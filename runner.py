@@ -54,9 +54,10 @@ class Runner(object):
 
         return buffer, perf_metrics, info
 
-    def testing(self, seed=None):
+    def testing(self, seed=None, location_dist='uniform'):
+        env_params = [EnvParams.SPECIES_AGENTS_RANGE, EnvParams.SPECIES_RANGE, EnvParams.TASKS_RANGE, location_dist]
         worker = Worker(self.metaAgentID, self.localNetwork, self.localBaseline,
-                        0, self.device, False, seed)
+                        0, self.device, False, seed, env_params)
         reward = worker.baseline_test()
         return reward, seed, self.metaAgentID
 

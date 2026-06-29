@@ -17,6 +17,7 @@ class TrainParams:
     DECAY_STEP = 2e3
     RESET_OPT = False
     EVALUATE = True
+    MAX_EPISODE = 40000     # stop training after this many dispatched episodes (set high for "unbounded")
     EVALUATION_SAMPLES = 256
     RESET_RAY = False
     INCREASE_DIFFICULTY = 20000

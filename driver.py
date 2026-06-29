@@ -154,7 +154,10 @@ class Logger(object):
         else:
             model = 'model'
         self.global_net.load_state_dict(checkpoint[model])
-        self.baseline_net.load_state_dict(checkpoint[model])
+        # the baseline ("model to beat") stays the historical best, so best-tracking
+        # continues against the real best across a resume instead of resetting to the
+        # final model -- keeps it consistent with the restored best_perf.
+        self.baseline_net.load_state_dict(checkpoint.get('best_model', checkpoint[model]))
         self.optimizer.load_state_dict(checkpoint['optimizer'])
         self.lr_decay.load_state_dict(checkpoint['lr_decay'])
         curr_episode = checkpoint['episode']
@@ -196,8 +199,12 @@ class Logger(object):
 
     @staticmethod
     def generate_test_set_seed():
-        test_seed = np.random.randint(low=0, high=1e8, size=TrainParams.EVALUATION_SAMPLES).tolist()
-        return test_seed
+        # Each eval instance is a (seed, distribution) pair, balanced across the five
+        # distributions, so best-model selection reflects all-distribution performance
+        # rather than uniform only. Paired ttest stays valid: the same fixed set is used
+        # for both the current and the baseline model until a baseline update.
+        seeds = np.random.randint(low=0, high=1e8, size=TrainParams.EVALUATION_SAMPLES).tolist()
+        return [(s, LOCATION_DISTS[i % len(LOCATION_DISTS)]) for i, s in enumerate(seeds)]
 
 
 def fuse_two_dicts(ini_dictionary1, ini_dictionary2):
@@ -271,7 +278,7 @@ def main():
     training_data = []
 
     try:
-        while True:
+        while curr_episode < TrainParams.MAX_EPISODE:
             # wait for any job to be completed
             done_id, jobs = ray.wait(jobs)
             done_job = ray.get(done_id)[0]
@@ -390,14 +397,18 @@ def main():
                             ray.get(test_agent.set_baseline_weights.remote(baseline_weights_memory))
                         rewards = dict()
                         seed_list = copy.deepcopy(test_set)
-                        evaluate_jobs = [test_agent_list[i].testing.remote(seed=seed_list.pop()) for i in range(TrainParams.NUM_META_AGENT)]
+                        evaluate_jobs = []
+                        for i in range(TrainParams.NUM_META_AGENT):
+                            s, d = seed_list.pop()
+                            evaluate_jobs.append(test_agent_list[i].testing.remote(seed=s, location_dist=d))
                         while True:
                             test_done_id, evaluate_jobs = ray.wait(evaluate_jobs)
                             test_result = ray.get(test_done_id)[0]
                             reward, seed, meta_id = test_result
                             rewards[seed] = reward
                             if seed_list:
-                                evaluate_jobs.append(test_agent_list[meta_id].testing.remote(seed=seed_list.pop()))
+                                s, d = seed_list.pop()
+                                evaluate_jobs.append(test_agent_list[meta_id].testing.remote(seed=s, location_dist=d))
                             if len(rewards) == TrainParams.EVALUATION_SAMPLES:
                                 break
                         rewards = dict(sorted(rewards.items()))
@@ -411,14 +422,18 @@ def main():
                         ray.get(test_agent.set_baseline_weights.remote(weights_memory))
                     rewards = dict()
                     seed_list = copy.deepcopy(test_set)
-                    evaluate_jobs = [test_agent_list[i].testing.remote(seed=seed_list.pop()) for i in range(TrainParams.NUM_META_AGENT)]
+                    evaluate_jobs = []
+                    for i in range(TrainParams.NUM_META_AGENT):
+                        s, d = seed_list.pop()
+                        evaluate_jobs.append(test_agent_list[i].testing.remote(seed=s, location_dist=d))
                     while True:
                         test_done_id, evaluate_jobs = ray.wait(evaluate_jobs)
                         test_result = ray.get(test_done_id)[0]
                         reward, seed, meta_id = test_result
                         rewards[seed] = reward
                         if seed_list:
-                            evaluate_jobs.append(test_agent_list[meta_id].testing.remote(seed=seed_list.pop()))
+                            s, d = seed_list.pop()
+                            evaluate_jobs.append(test_agent_list[meta_id].testing.remote(seed=s, location_dist=d))
                         if len(rewards) == TrainParams.EVALUATION_SAMPLES:
                             break
                     rewards = dict(sorted(rewards.items()))
@@ -456,8 +471,15 @@ def main():
                         jobs.append(meta_agent.training.remote(weights_memory, baseline_weights_memory, curr_episode, env_params))
                         curr_episode += 1
 
+        # reached the episode cap -> persist a final checkpoint and shut down cleanly
+        print(f'reached MAX_EPISODE = {TrainParams.MAX_EPISODE} at episode {curr_episode}; saving final model')
+        logger.save_model(curr_episode, curr_level, best_perf, dist_scheduler.weights)
+        for a in meta_agents:
+            ray.kill(a)
+
     except KeyboardInterrupt:
         print("CTRL_C pressed. Killing remote workers")
+        logger.save_model(curr_episode, curr_level, best_perf, dist_scheduler.weights)
         for a in meta_agents:
             ray.kill(a)
 
