@@ -48,6 +48,8 @@ class Runner(object):
         info = {
             "id": self.metaAgentID,
             "episode_number": curr_episode,
+            "location_dist": worker.env.location_dist,
+            "reward": worker.mean_reward,
         }
 
         return buffer, perf_metrics, info

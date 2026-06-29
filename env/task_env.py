@@ -10,12 +10,17 @@ import copy
 
 class TaskEnv:
     def __init__(self, per_species_range=(10, 10), species_range=(5, 5), tasks_range=(30, 30), traits_dim=5,
-                 decision_dim=10, max_task_size=2, duration_scale=5, seed=None, plot_figure=False):
+                 decision_dim=10, max_task_size=2, duration_scale=5, seed=None, plot_figure=False,
+                 location_dist='uniform'):
         """
         :param traits_dim: number of capabilities in this problem, e.g. 3 traits
         :param seed: seed to generate pseudo random problem instance
+        :param location_dist: spatial distribution of task locations. One of
+            'uniform', 'gmm', 'thomas', 'poisson_disk', 'ring'. Only the task
+            positions change; every other part of the instance is unaffected.
         """
         self.rng = None
+        self.location_dist = location_dist
         self.per_species_range = per_species_range
         self.species_range = species_range
         self.tasks_range = tasks_range
@@ -64,6 +69,75 @@ class TaskEnv:
             choice = np.random.choice(a, size, replace)
         return choice
 
+    def random_normal(self, loc=0.0, scale=1.0, size=None):
+        if self.rng is not None:
+            return self.rng.normal(loc, scale, size)
+        return np.random.normal(loc, scale, size)
+
+    def generate_locations(self, num, dist=None):
+        """Sample `num` 2D points in the unit square [0, 1]^2 according to `dist`.
+        Only the spatial layout changes; every other part of the instance is unaffected.
+
+        The five options are ordered by how spread out the points are, which is what
+        the makespan objective actually responds to (greedy-baseline makespan at n=30,
+        velocity=0.2, duration_scale=5, for reference):
+            'gmm'     compact clusters        ~26   (shortest)
+            'ring'    points on a ring        ~32
+            'uniform' baseline                ~35
+            'bipolar' two distant groups      ~38
+            'edges'   points on the borders   ~41   (longest)
+        """
+        dist = self.location_dist if dist is None else dist
+        if dist == 'uniform':
+            locs = self.random_value(num, 2)
+        elif dist == 'gmm':
+            locs = self._gmm_locations(num)
+        elif dist == 'ring':
+            locs = self._ring_locations(num)
+        elif dist == 'bipolar':
+            locs = self._bipolar_locations(num)
+        elif dist == 'edges':
+            locs = self._edge_locations(num)
+        else:
+            raise ValueError(f'Unknown location_dist: {dist}')
+        return np.clip(locs, 0.0, 1.0)
+
+    def _gmm_locations(self, num, n_clusters=None, sigma=0.045):
+        # Tight attracting hotspots: 2-3 cluster centers, points scatter normally around them.
+        if n_clusters is None:
+            n_clusters = int(self.random_int(2, 4))  # 2-3 clusters
+        centers = 0.2 + 0.6 * self.random_value(n_clusters, 2)  # keep centers off the border
+        assign = self.random_int(0, n_clusters, num)
+        return centers[assign] + self.random_normal(0.0, sigma, (num, 2))
+
+    def _ring_locations(self, num, noise=0.02):
+        # Structured: points lie on 1-2 concentric circles around the map center.
+        n_rings = int(self.random_int(1, 3))  # 1-2 rings
+        radii = np.linspace(0.3, 0.4, n_rings)
+        center = np.array([0.5, 0.5])
+        ring_idx = self.random_int(0, n_rings, num)
+        angles = self.random_value(num, 1).reshape(-1) * 2 * np.pi
+        rad = radii[ring_idx] + self.random_normal(0.0, noise, num)
+        x = center[0] + rad * np.cos(angles)
+        y = center[1] + rad * np.sin(angles)
+        return np.stack([x, y], axis=1)
+
+    def _bipolar_locations(self, num, sigma=0.05):
+        # Two distant groups near opposite corners -> agents must shuttle across the map.
+        centers = np.array([[0.15, 0.15], [0.85, 0.85]])
+        assign = self.random_int(0, 2, num)
+        return centers[assign] + self.random_normal(0.0, sigma, (num, 2))
+
+    def _edge_locations(self, num):
+        # Points pushed onto the four borders -> maximum spatial extent / longest tours.
+        pts = self.random_value(num, 2)
+        side = self.random_int(0, 4, num)
+        pts[side == 0, 0] = 0.02
+        pts[side == 1, 0] = 0.98
+        pts[side == 2, 1] = 0.02
+        pts[side == 3, 1] = 0.98
+        return pts
+
     def generate_task(self, tasks_num):
         tasks_ini = self.random_int(0, self.max_task_size, (tasks_num, self.traits_dim))
         while not np.all(np.sum(tasks_ini, axis=1) != 0):
@@ -97,7 +171,7 @@ class TaskEnv:
 
         depot_loc = self.random_value(species_num, 2)
         cost_ini = [self.random_value(1, 1) for _ in range(species_num)]
-        tasks_loc = self.random_value(tasks_num, 2)
+        tasks_loc = self.generate_locations(tasks_num)  # spatial distribution controlled by self.location_dist
         tasks_time = self.random_value(tasks_num, 1) * self.duration_scale
 
         task_dic = dict()

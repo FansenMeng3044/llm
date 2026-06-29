@@ -5,6 +5,8 @@ import torch.nn as nn
 from torch.utils.tensorboard import SummaryWriter
 import ray
 import os
+import json
+import math
 import numpy as np
 import random
 
@@ -14,6 +16,78 @@ from parameters import *
 from env.task_env import TaskEnv
 from scipy.stats import ttest_rel
 from torch.distributions import Categorical
+
+
+# Train on the five task-location distributions in tunable proportions.
+# Assignment happens here on the (single) driver at dispatch time, so the exact
+# balance is independent of the async order in which Ray workers finish.
+LOCATION_DISTS = ['uniform', 'gmm', 'ring', 'bipolar', 'edges']
+DIST_WEIGHTS_PATH = os.path.join(SaverParams.MODEL_PATH, 'dist_weights.json')
+DIST_STATS_PATH = os.path.join(SaverParams.MODEL_PATH, 'dist_stats.json')
+
+
+class DistScheduler:
+    """Deterministic, exactly-proportional distribution sampler.
+
+    `weights` (a dist->number dict) is turned into integer per-cycle quotas via
+    the largest-remainder method; a shuffled "bag" of that exact composition is
+    dealt out and refilled when empty. So every full cycle realizes the target
+    proportions exactly (not just in expectation). A weight of 0 disables a
+    distribution. Equal weights reproduce the one-each-per-5 behaviour."""
+
+    def __init__(self, dists, weights=None):
+        self.dists = list(dists)
+        self._bag = []
+        self.set_weights(weights or {d: 1 for d in self.dists})
+
+    def set_weights(self, weights):
+        w = {d: max(0.0, float(weights.get(d, 0))) for d in self.dists}
+        if sum(w.values()) <= 0:
+            w = {d: 1.0 for d in self.dists}
+        self.weights = w
+        self.quota = self._largest_remainder(w)
+        self._bag = []  # force a refill on the next draw
+
+    @staticmethod
+    def _largest_remainder(w):
+        positive = {d: v for d, v in w.items() if v > 0}
+        total = sum(positive.values())
+        if all(abs(v - round(v)) < 1e-9 for v in positive.values()):
+            length = int(round(total))                              # integer weights -> exact, minimal cycle
+        else:
+            length = min(1000, max(len(positive), int(round(total / min(positive.values())))))  # float -> fine resolution
+        ideal = {d: length * v / total for d, v in positive.items()}
+        quota = {d: int(math.floor(x)) for d, x in ideal.items()}
+        remaining = length - sum(quota.values())
+        for d in sorted(positive, key=lambda d: ideal[d] - quota[d], reverse=True)[:remaining]:
+            quota[d] += 1
+        return {d: quota.get(d, 0) for d in w}
+
+    def next(self):
+        if not self._bag:
+            bag = []
+            for d, c in self.quota.items():
+                bag += [d] * c
+            random.shuffle(bag)
+            self._bag = bag
+        return self._bag.pop()
+
+
+def load_dist_weights(path, dists):
+    if os.path.exists(path):
+        with open(path) as f:
+            raw = json.load(f)
+        return {d: max(0.0, float(raw.get(d, 0))) for d in dists}
+    return None
+
+
+def save_dist_weights(path, weights):
+    os.makedirs(os.path.dirname(path), exist_ok=True)
+    with open(path, 'w') as f:
+        json.dump({d: round(float(v), 4) for d, v in weights.items()}, f, indent=2)
+
+
+dist_scheduler = DistScheduler(LOCATION_DISTS)
 
 
 class Logger(object):
@@ -53,6 +127,25 @@ class Logger(object):
         for k, v in metrics.items():
             self.writer.add_scalar(tag=k, scalar_value=v, global_step=curr_episode)
 
+    def write_dist_stats(self, dist_perf, weights, curr_episode):
+        """Per-distribution metrics -> TensorBoard curves + a dist_stats.json the
+        LLM (or you) can read to decide new sampling weights."""
+        summary = {'episode': curr_episode, 'weights': {d: round(float(w), 4) for d, w in weights.items()}, 'per_dist': {}}
+        for d, m in dist_perf.items():
+            n = len(m.get('reward', []))
+            if n == 0:
+                continue
+            stats = {'episodes': n}
+            for k, vals in m.items():
+                if len(vals) == 0:
+                    continue
+                mean = float(np.nanmean(vals))
+                stats[k] = round(mean, 4)
+                self.writer.add_scalar(tag=f'Dist/{d}/{k}', scalar_value=mean, global_step=curr_episode)
+            summary['per_dist'][d] = stats
+        with open(DIST_STATS_PATH, 'w') as f:
+            json.dump(summary, f, indent=2)
+
     def load_saved_model(self):
         print('Loading Model...')
         checkpoint = torch.load(SaverParams.MODEL_PATH + '/checkpoint.pth')
@@ -67,15 +160,16 @@ class Logger(object):
         curr_episode = checkpoint['episode']
         curr_level = checkpoint['level']
         best_perf = checkpoint['best_perf']
+        dist_weights = checkpoint.get('dist_weights', None)
         print("curr_episode set to ", curr_episode)
         print("best_perf so far is ", best_perf)
         print(self.optimizer.state_dict()['param_groups'][0]['lr'])
         if TrainParams.RESET_OPT:
             self.optimizer = optim.Adam(self.global_net.parameters(), lr=TrainParams.LR)
             self.lr_decay = optim.lr_scheduler.StepLR(self.optimizer, step_size=TrainParams.DECAY_STEP, gamma=0.98)
-        return curr_episode, curr_level, best_perf
+        return curr_episode, curr_level, best_perf, dist_weights
 
-    def save_model(self, curr_episode, curr_level, best_perf):
+    def save_model(self, curr_episode, curr_level, best_perf, dist_weights=None):
         print('Saving model', end='\n')
         checkpoint = {"model": self.global_net.state_dict(),
                       "best_model": self.baseline_net.state_dict(),
@@ -84,7 +178,8 @@ class Logger(object):
                       "episode": curr_episode,
                       "lr_decay": self.lr_decay.state_dict(),
                       "level": curr_level,
-                      "best_perf": best_perf
+                      "best_perf": best_perf,
+                      "dist_weights": dist_weights
                       }
         path_checkpoint = "./" + SaverParams.MODEL_PATH + "/checkpoint.pth"
         torch.save(checkpoint, path_checkpoint)
@@ -95,7 +190,8 @@ class Logger(object):
         per_species_num = np.random.randint(EnvParams.SPECIES_AGENTS_RANGE[0], EnvParams.SPECIES_AGENTS_RANGE[1] + 1)
         species_num = np.random.randint(EnvParams.SPECIES_RANGE[0], EnvParams.SPECIES_RANGE[1] + 1)
         tasks_num = np.random.randint(EnvParams.TASKS_RANGE[0], EnvParams.TASKS_RANGE[1] + 1)
-        params = [(per_species_num, per_species_num), (species_num, species_num), (tasks_num, tasks_num)]
+        location_dist = dist_scheduler.next()  # one draw per dispatch -> exact target proportions
+        params = [(per_species_num, per_species_num), (species_num, species_num), (tasks_num, tasks_num), location_dist]
         return params
 
     @staticmethod
@@ -131,8 +227,18 @@ def main():
     curr_episode = 0
     curr_level = 0
     best_perf = -200
+    ckpt_weights = None
     if SaverParams.LOAD_MODEL:
-        curr_episode, curr_level, best_perf = logger.load_saved_model()
+        curr_episode, curr_level, best_perf, ckpt_weights = logger.load_saved_model()
+
+    # distribution sampling weights: file > checkpoint > equal. The json file is the
+    # live source of truth (editable mid-run); also mirrored into the checkpoint.
+    dist_weights = load_dist_weights(DIST_WEIGHTS_PATH, LOCATION_DISTS)
+    if dist_weights is None:
+        dist_weights = ckpt_weights if ckpt_weights is not None else {d: 1 for d in LOCATION_DISTS}
+        save_dist_weights(DIST_WEIGHTS_PATH, dist_weights)
+    dist_scheduler.set_weights(dist_weights)
+    print('distribution weights:', dist_scheduler.weights, '-> per-cycle quota:', dist_scheduler.quota)
 
     # launch meta agents
     meta_agents = [RLRunner.remote(i) for i in range(TrainParams.NUM_META_AGENT)]
@@ -152,14 +258,16 @@ def main():
     # launch the first job on each runner
     jobs = []
 
-    env_params = logger.generate_env_params(curr_level)
     for i, meta_agent in enumerate(meta_agents):
+        env_params = logger.generate_env_params(curr_level)  # per-worker draw keeps the 5-way balance exact
         jobs.append(meta_agent.training.remote(weights_memory, baseline_weights_memory, curr_episode, env_params))
         curr_episode += 1
     test_set = logger.generate_test_set_seed()
     baseline_value = None
     experience_buffer = {idx:[] for idx in range(7)}
     perf_metrics = {'success_rate': [], 'makespan': [], 'time_cost': [], 'waiting_time': [], 'travel_dist': [], 'efficiency': []}
+    dist_perf_keys = list(perf_metrics.keys()) + ['reward']
+    dist_perf = {d: {k: [] for k in dist_perf_keys} for d in LOCATION_DISTS}  # rolling per-distribution stats
     training_data = []
 
     try:
@@ -170,6 +278,14 @@ def main():
             buffer, metrics, info = done_job
             experience_buffer = fuse_two_dicts(experience_buffer, buffer)
             perf_metrics = fuse_two_dicts(perf_metrics, metrics)
+
+            # bucket this episode's metrics under the distribution it was sampled from
+            episode_dist = info.get('location_dist')
+            if episode_dist in dist_perf:
+                for k, v in metrics.items():
+                    dist_perf[episode_dist][k] += v
+                if 'reward' in info:
+                    dist_perf[episode_dist]['reward'].append(info['reward'])
 
             update_done = False
             if len(experience_buffer[0]) >= TrainParams.BATCH_SIZE:
@@ -249,7 +365,15 @@ def main():
                 print('increase difficulty to level', curr_level)
 
             if curr_episode % 512 == 0:
-                logger.save_model(curr_episode, curr_level, best_perf)
+                # publish per-distribution stats (TensorBoard + dist_stats.json), then
+                # hot-reload sampling weights from the json file if it was edited.
+                logger.write_dist_stats(dist_perf, dist_scheduler.weights, curr_episode)
+                dist_perf = {d: {k: [] for k in dist_perf_keys} for d in LOCATION_DISTS}  # reset rolling window
+                new_weights = load_dist_weights(DIST_WEIGHTS_PATH, LOCATION_DISTS)
+                if new_weights is not None and new_weights != dist_scheduler.weights:
+                    dist_scheduler.set_weights(new_weights)
+                    print('reloaded distribution weights:', dist_scheduler.weights, '-> quota:', dist_scheduler.quota)
+                logger.save_model(curr_episode, curr_level, best_perf, dist_scheduler.weights)
 
             if TrainParams.EVALUATE:
                 if curr_episode % 1024 == 0:
@@ -325,9 +449,10 @@ def main():
                             print('update test set')
                             baseline_value = None
                             best_perf = test_value.mean()
-                            logger.save_model(curr_episode, None, best_perf)
+                            logger.save_model(curr_episode, None, best_perf, dist_scheduler.weights)
                     jobs = []
                     for i, meta_agent in enumerate(meta_agents):
+                        env_params = logger.generate_env_params(curr_level)  # per-worker draw keeps the 5-way balance exact
                         jobs.append(meta_agent.training.remote(weights_memory, baseline_weights_memory, curr_episode, env_params))
                         curr_episode += 1
 

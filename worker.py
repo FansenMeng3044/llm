@@ -32,13 +32,19 @@ class Worker:
         self.save_image = save_image
         if env_params is None:
             env_params = [EnvParams.SPECIES_AGENTS_RANGE, EnvParams.SPECIES_RANGE, EnvParams.TASKS_RANGE]
-        self.env = TaskEnv(*env_params, EnvParams.TRAIT_DIM, EnvParams.DECISION_DIM, seed=seed, plot_figure=save_image)
+        env_params = list(env_params)
+        if len(env_params) == 3:           # backward compatible: no distribution -> uniform
+            env_params = env_params + ['uniform']
+        *ranges, location_dist = env_params
+        self.env = TaskEnv(*ranges, EnvParams.TRAIT_DIM, EnvParams.DECISION_DIM, seed=seed,
+                           plot_figure=save_image, location_dist=location_dist)
         self.baseline_env = copy.deepcopy(self.env)
         self.local_baseline = local_baseline
         self.local_net = local_network
         self.experience = {idx:[] for idx in range(7)}
         self.episode_number = None
         self.perf_metrics = {}
+        self.mean_reward = np.nan
         self.p_rnn_state = {}
         self.max_time = EnvParams.MAX_TIME
 
@@ -152,6 +158,7 @@ class Worker:
             buffers.append(buffer)
             metrics.append(perf_metrics)
         baseline_reward = np.nanmean(baseline_rewards)
+        self.mean_reward = float(baseline_reward)
 
         for idx, buffer in enumerate(buffers):
             for key in buffer.keys():
