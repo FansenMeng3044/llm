@@ -40,3 +40,24 @@ python ORTools.py --all
 ```
 
 This runner writes `env_i/ortools.solution` and `<dataset>/ortools.csv`. It is an OR-Tools replacement route generator for pkl-only data, not the original Gurobi CTAS-D or TACO solver.
+
+## Replaying OR-Tools routes through TACO.py
+
+`baseline/TACO.py` is a replay/evaluation wrapper: it reads `env_i/<method>.solution`, loads the routes into `TaskEnv`, and writes replay metrics. It does not implement the original ACO-based TACO solver.
+
+To replay OR-Tools routes through the same wrapper:
+
+```powershell
+cd baseline
+python TACO.py --dataset RALTestSet_M2_1 --method ortools --limit 2
+python TACO.py --dataset RALTestSet_M2_1 --method ortools
+python TACO.py --all --method ortools
+```
+
+This writes `ortools_taco_replay.csv` files. To create compatibility copies named `taco.solution` from existing OR-Tools solutions:
+
+```powershell
+python TACO.py --all --copy-ortools-to-taco
+```
+
+Those copied `taco.solution` files are OR-Tools routes under a TACO-compatible filename; they are not outputs from the original TACO ACO solver.
