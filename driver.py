@@ -147,8 +147,9 @@ class Logger(object):
             json.dump(summary, f, indent=2)
 
     def load_saved_model(self):
-        print('Loading Model...')
-        checkpoint = torch.load(SaverParams.MODEL_PATH + '/checkpoint.pth')
+        load_file = getattr(SaverParams, 'LOAD_CHECKPOINT', 'checkpoint.pth')
+        print('Loading Model from', load_file)
+        checkpoint = torch.load(os.path.join(SaverParams.MODEL_PATH, load_file))
         if SaverParams.LOAD_FROM == 'best':
             model = 'best_model'
         else:
@@ -172,7 +173,7 @@ class Logger(object):
             self.lr_decay = optim.lr_scheduler.StepLR(self.optimizer, step_size=TrainParams.DECAY_STEP, gamma=0.98)
         return curr_episode, curr_level, best_perf, dist_weights
 
-    def save_model(self, curr_episode, curr_level, best_perf, dist_weights=None):
+    def save_model(self, curr_episode, curr_level, best_perf, dist_weights=None, tag=None):
         print('Saving model', end='\n')
         checkpoint = {"model": self.global_net.state_dict(),
                       "best_model": self.baseline_net.state_dict(),
@@ -184,9 +185,11 @@ class Logger(object):
                       "best_perf": best_perf,
                       "dist_weights": dist_weights
                       }
-        path_checkpoint = "./" + SaverParams.MODEL_PATH + "/checkpoint.pth"
+        # tag set -> permanent numbered milestone (checkpoint_<tag>.pth); else the rolling checkpoint
+        name = f'checkpoint_{tag}.pth' if tag is not None else 'checkpoint.pth'
+        path_checkpoint = os.path.join(SaverParams.MODEL_PATH, name)
         torch.save(checkpoint, path_checkpoint)
-        print('Saved model', end='\n')
+        print('Saved model', name)
 
     @staticmethod
     def generate_env_params(curr_level=None):
@@ -276,6 +279,10 @@ def main():
     dist_perf_keys = list(perf_metrics.keys()) + ['reward']
     dist_perf = {d: {k: [] for k in dist_perf_keys} for d in LOCATION_DISTS}  # rolling per-distribution stats
     training_data = []
+
+    # next episode at which to drop a permanent numbered checkpoint (for fork/resume-from-any)
+    keep_every = getattr(SaverParams, 'SAVE_CHECKPOINT_EVERY', 0)
+    next_milestone = (curr_episode // keep_every + 1) * keep_every if keep_every else None
 
     try:
         while curr_episode < TrainParams.MAX_EPISODE:
@@ -381,6 +388,12 @@ def main():
                     dist_scheduler.set_weights(new_weights)
                     print('reloaded distribution weights:', dist_scheduler.weights, '-> quota:', dist_scheduler.quota)
                 logger.save_model(curr_episode, curr_level, best_perf, dist_scheduler.weights)
+
+            # keep a permanent numbered snapshot at each milestone so you can later
+            # resume / fork from that exact point (e.g. branch control vs LLM from 20000)
+            if next_milestone is not None and curr_episode >= next_milestone:
+                logger.save_model(curr_episode, curr_level, best_perf, dist_scheduler.weights, tag=next_milestone)
+                next_milestone += keep_every
 
             if TrainParams.EVALUATE:
                 if curr_episode % 1024 == 0:

@@ -41,6 +41,8 @@ class SaverParams:
     GIFS_PATH = f'gifs/{FOLDER_NAME}'
     LOAD_MODEL = False
     LOAD_FROM = 'current'  # 'best'
+    LOAD_CHECKPOINT = 'checkpoint.pth'   # resume from this file in MODEL_PATH; set e.g. 'checkpoint_20000.pth' to fork from a milestone
+    SAVE_CHECKPOINT_EVERY = 10000        # also keep a permanent numbered snapshot every N episodes (0 = off)
     SAVE = True
     SAVE_IMG = True
     SAVE_IMG_GAP = 1000
