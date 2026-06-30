@@ -16,3 +16,4 @@ model/
 train/
 RALTestSets/
 *.solution
+tmp/

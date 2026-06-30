@@ -61,3 +61,14 @@ python TACO.py --all --copy-ortools-to-taco
 ```
 
 Those copied `taco.solution` files are OR-Tools routes under a TACO-compatible filename; they are not outputs from the original TACO ACO solver.
+
+## Exporting result artifacts
+
+After `RALTestSets/*/ortools.csv` and `RALTestSets/*/ortools_taco_replay.csv` exist locally, export shareable JSON and Markdown artifacts with:
+
+```powershell
+conda activate mrta-ortools
+python export_results.py
+```
+
+The exported files are written under `results/`. These artifacts are suitable for GitHub, while the raw `RALTestSets/` data and `*.solution` route pickles remain ignored.

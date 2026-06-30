@@ -1,0 +1,458 @@
+{
+  "dataset": "RALTestSet_M4_2",
+  "result_type": "ortools",
+  "source_csv": "RALTestSets/RALTestSet_M4_2/ortools.csv",
+  "row_count": 50,
+  "rows": [
+    {
+      "env": "env_50",
+      "success_rate": 1,
+      "makespan": 21.61893295190033,
+      "time_cost": 7.281814279359658,
+      "waiting_time": 0,
+      "travel_dist": 26.836514077113485,
+      "efficiency": 1.8166666666666669
+    },
+    {
+      "env": "env_51",
+      "success_rate": 0.4,
+      "makespan": null,
+      "time_cost": null,
+      "waiting_time": null,
+      "travel_dist": null,
+      "efficiency": null
+    },
+    {
+      "env": "env_52",
+      "success_rate": 0.84,
+      "makespan": null,
+      "time_cost": null,
+      "waiting_time": null,
+      "travel_dist": null,
+      "efficiency": null
+    },
+    {
+      "env": "env_53",
+      "success_rate": 1,
+      "makespan": 16.71667543897487,
+      "time_cost": 5.700834933912618,
+      "waiting_time": 0,
+      "travel_dist": 35.01476918904127,
+      "efficiency": 1.8233333333333333
+    },
+    {
+      "env": "env_54",
+      "success_rate": 0.72,
+      "makespan": null,
+      "time_cost": null,
+      "waiting_time": null,
+      "travel_dist": null,
+      "efficiency": null
+    },
+    {
+      "env": "env_55",
+      "success_rate": 0.86,
+      "makespan": null,
+      "time_cost": null,
+      "waiting_time": null,
+      "travel_dist": null,
+      "efficiency": null
+    },
+    {
+      "env": "env_56",
+      "success_rate": 0.74,
+      "makespan": null,
+      "time_cost": null,
+      "waiting_time": null,
+      "travel_dist": null,
+      "efficiency": null
+    },
+    {
+      "env": "env_57",
+      "success_rate": 0.28,
+      "makespan": null,
+      "time_cost": null,
+      "waiting_time": null,
+      "travel_dist": null,
+      "efficiency": null
+    },
+    {
+      "env": "env_58",
+      "success_rate": 1,
+      "makespan": 22.080881612339628,
+      "time_cost": 5.906949758956846,
+      "waiting_time": 0.4185833043788648,
+      "travel_dist": 46.697554890653066,
+      "efficiency": 1.5983333333333332
+    },
+    {
+      "env": "env_59",
+      "success_rate": 1,
+      "makespan": 15.763819526156183,
+      "time_cost": 5.058291782731665,
+      "waiting_time": 0,
+      "travel_dist": 37.513561821955285,
+      "efficiency": 1.5933333333333335
+    },
+    {
+      "env": "env_60",
+      "success_rate": 1,
+      "makespan": 17.926791468401717,
+      "time_cost": 5.054614309707684,
+      "waiting_time": 0.16568055885372815,
+      "travel_dist": 39.26913885517329,
+      "efficiency": 1.57
+    },
+    {
+      "env": "env_61",
+      "success_rate": 1,
+      "makespan": 14.29977761459769,
+      "time_cost": 3.5760143618027245,
+      "waiting_time": 0,
+      "travel_dist": 39.24800270739657,
+      "efficiency": 1.7916666666666665
+    },
+    {
+      "env": "env_62",
+      "success_rate": 1,
+      "makespan": 37.02408793764384,
+      "time_cost": 9.503760354451813,
+      "waiting_time": 0.49704949069565507,
+      "travel_dist": 41.166107947271215,
+      "efficiency": 1.7339999999999998
+    },
+    {
+      "env": "env_63",
+      "success_rate": 0.92,
+      "makespan": null,
+      "time_cost": null,
+      "waiting_time": null,
+      "travel_dist": null,
+      "efficiency": null
+    },
+    {
+      "env": "env_64",
+      "success_rate": 0.66,
+      "makespan": null,
+      "time_cost": null,
+      "waiting_time": null,
+      "travel_dist": null,
+      "efficiency": null
+    },
+    {
+      "env": "env_65",
+      "success_rate": 1,
+      "makespan": 34.205908830611754,
+      "time_cost": 10.612998469480624,
+      "waiting_time": 1.3279435042998957,
+      "travel_dist": 42.72357100080438,
+      "efficiency": 1.5743333333333334
+    },
+    {
+      "env": "env_66",
+      "success_rate": 1,
+      "makespan": 34.48776836074608,
+      "time_cost": 7.466820657911756,
+      "waiting_time": 0.5043154211221761,
+      "travel_dist": 45.0611643335952,
+      "efficiency": 1.8183333333333334
+    },
+    {
+      "env": "env_67",
+      "success_rate": 1,
+      "makespan": 38.27101291515069,
+      "time_cost": 13.4444547503037,
+      "waiting_time": 0,
+      "travel_dist": 24.38742036946499,
+      "efficiency": 2.0116666666666667
+    },
+    {
+      "env": "env_68",
+      "success_rate": 1,
+      "makespan": 46.78961667970114,
+      "time_cost": 17.81292784199481,
+      "waiting_time": 0,
+      "travel_dist": 30.945688363823123,
+      "efficiency": 1.9400000000000004
+    },
+    {
+      "env": "env_69",
+      "success_rate": 1,
+      "makespan": 13.024407651269513,
+      "time_cost": 3.6637963715570714,
+      "waiting_time": 0,
+      "travel_dist": 41.630255368718736,
+      "efficiency": 1.721666666666667
+    },
+    {
+      "env": "env_70",
+      "success_rate": 0.5,
+      "makespan": null,
+      "time_cost": null,
+      "waiting_time": null,
+      "travel_dist": null,
+      "efficiency": null
+    },
+    {
+      "env": "env_71",
+      "success_rate": 0.48,
+      "makespan": null,
+      "time_cost": null,
+      "waiting_time": null,
+      "travel_dist": null,
+      "efficiency": null
+    },
+    {
+      "env": "env_72",
+      "success_rate": 1,
+      "makespan": 88.65348713478018,
+      "time_cost": 25.241327417542266,
+      "waiting_time": 5.276059921320992,
+      "travel_dist": 45.44216309706773,
+      "efficiency": 1.5806666666666667
+    },
+    {
+      "env": "env_73",
+      "success_rate": 0.94,
+      "makespan": null,
+      "time_cost": null,
+      "waiting_time": null,
+      "travel_dist": null,
+      "efficiency": null
+    },
+    {
+      "env": "env_74",
+      "success_rate": 1,
+      "makespan": 15.461425577097764,
+      "time_cost": 3.6501885819027677,
+      "waiting_time": 0,
+      "travel_dist": 29.48455835121711,
+      "efficiency": 1.6883333333333332
+    },
+    {
+      "env": "env_75",
+      "success_rate": 0.98,
+      "makespan": null,
+      "time_cost": null,
+      "waiting_time": null,
+      "travel_dist": null,
+      "efficiency": null
+    },
+    {
+      "env": "env_76",
+      "success_rate": 0.7,
+      "makespan": null,
+      "time_cost": null,
+      "waiting_time": null,
+      "travel_dist": null,
+      "efficiency": null
+    },
+    {
+      "env": "env_77",
+      "success_rate": 1,
+      "makespan": 20.505497710313062,
+      "time_cost": 6.308333634632749,
+      "waiting_time": 0,
+      "travel_dist": 31.041681053103137,
+      "efficiency": 1.8750000000000002
+    },
+    {
+      "env": "env_78",
+      "success_rate": 0.9,
+      "makespan": null,
+      "time_cost": null,
+      "waiting_time": null,
+      "travel_dist": null,
+      "efficiency": null
+    },
+    {
+      "env": "env_79",
+      "success_rate": 1,
+      "makespan": 13.641584843391328,
+      "time_cost": 4.105214716348638,
+      "waiting_time": 0.1383537048387907,
+      "travel_dist": 42.618263456629236,
+      "efficiency": 1.565
+    },
+    {
+      "env": "env_80",
+      "success_rate": 0.68,
+      "makespan": null,
+      "time_cost": null,
+      "waiting_time": null,
+      "travel_dist": null,
+      "efficiency": null
+    },
+    {
+      "env": "env_81",
+      "success_rate": 0.98,
+      "makespan": null,
+      "time_cost": null,
+      "waiting_time": null,
+      "travel_dist": null,
+      "efficiency": null
+    },
+    {
+      "env": "env_82",
+      "success_rate": 1,
+      "makespan": 20.712556755538213,
+      "time_cost": 6.960661972351765,
+      "waiting_time": 0,
+      "travel_dist": 28.74263792192297,
+      "efficiency": 1.65
+    },
+    {
+      "env": "env_83",
+      "success_rate": 1,
+      "makespan": 13.035106006090079,
+      "time_cost": 4.452374362496066,
+      "waiting_time": 0,
+      "travel_dist": 30.58203502145294,
+      "efficiency": 1.6833333333333333
+    },
+    {
+      "env": "env_84",
+      "success_rate": 0.64,
+      "makespan": null,
+      "time_cost": null,
+      "waiting_time": null,
+      "travel_dist": null,
+      "efficiency": null
+    },
+    {
+      "env": "env_85",
+      "success_rate": 0.88,
+      "makespan": null,
+      "time_cost": null,
+      "waiting_time": null,
+      "travel_dist": null,
+      "efficiency": null
+    },
+    {
+      "env": "env_86",
+      "success_rate": 1,
+      "makespan": 36.09732204531061,
+      "time_cost": 13.12318231050984,
+      "waiting_time": 0,
+      "travel_dist": 24.651822669868658,
+      "efficiency": 1.6683333333333337
+    },
+    {
+      "env": "env_87",
+      "success_rate": 1,
+      "makespan": 15.845055057123972,
+      "time_cost": 4.7427747765350645,
+      "waiting_time": 0.04788669972801471,
+      "travel_dist": 42.72269676522484,
+      "efficiency": 1.5896666666666668
+    },
+    {
+      "env": "env_88",
+      "success_rate": 0.96,
+      "makespan": null,
+      "time_cost": null,
+      "waiting_time": null,
+      "travel_dist": null,
+      "efficiency": null
+    },
+    {
+      "env": "env_89",
+      "success_rate": 0.54,
+      "makespan": null,
+      "time_cost": null,
+      "waiting_time": null,
+      "travel_dist": null,
+      "efficiency": null
+    },
+    {
+      "env": "env_90",
+      "success_rate": 1,
+      "makespan": 30.362038405682842,
+      "time_cost": 10.097510688183378,
+      "waiting_time": 0,
+      "travel_dist": 28.620833265513802,
+      "efficiency": 1.59
+    },
+    {
+      "env": "env_91",
+      "success_rate": 0.68,
+      "makespan": null,
+      "time_cost": null,
+      "waiting_time": null,
+      "travel_dist": null,
+      "efficiency": null
+    },
+    {
+      "env": "env_92",
+      "success_rate": 0.26,
+      "makespan": null,
+      "time_cost": null,
+      "waiting_time": null,
+      "travel_dist": null,
+      "efficiency": null
+    },
+    {
+      "env": "env_93",
+      "success_rate": 1,
+      "makespan": 16.8108730494244,
+      "time_cost": 5.141596437264295,
+      "waiting_time": 0.14148551040883406,
+      "travel_dist": 39.730006257604416,
+      "efficiency": 1.7466666666666666
+    },
+    {
+      "env": "env_94",
+      "success_rate": 0.92,
+      "makespan": null,
+      "time_cost": null,
+      "waiting_time": null,
+      "travel_dist": null,
+      "efficiency": null
+    },
+    {
+      "env": "env_95",
+      "success_rate": 1,
+      "makespan": 21.02498032141669,
+      "time_cost": 5.423015980507048,
+      "waiting_time": 0,
+      "travel_dist": 41.90722287527665,
+      "efficiency": 1.7366666666666666
+    },
+    {
+      "env": "env_96",
+      "success_rate": 1,
+      "makespan": 56.26052131149292,
+      "time_cost": 17.187497895708166,
+      "waiting_time": 1.7889592959063523,
+      "travel_dist": 34.22728579983621,
+      "efficiency": 1.7186666666666666
+    },
+    {
+      "env": "env_97",
+      "success_rate": 0.68,
+      "makespan": null,
+      "time_cost": null,
+      "waiting_time": null,
+      "travel_dist": null,
+      "efficiency": null
+    },
+    {
+      "env": "env_98",
+      "success_rate": 0.32,
+      "makespan": null,
+      "time_cost": null,
+      "waiting_time": null,
+      "travel_dist": null,
+      "efficiency": null
+    },
+    {
+      "env": "env_99",
+      "success_rate": 1,
+      "makespan": 14.634985386217375,
+      "time_cost": 4.228464276637594,
+      "waiting_time": 0,
+      "travel_dist": 48.96102031736496,
+      "efficiency": 1.6583333333333334
+    }
+  ]
+}
