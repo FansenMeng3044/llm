@@ -16,6 +16,16 @@ from parameters import *
 from env.task_env import TaskEnv
 from scipy.stats import ttest_rel
 from torch.distributions import Categorical
+import online_reweight
+
+
+def _extract_state_dict(obj):
+    """Accept a full checkpoint dict or a raw state_dict; return the weights state_dict."""
+    if isinstance(obj, dict):
+        for k in ('best_model', 'model', 'state_dict'):
+            if k in obj and isinstance(obj[k], dict):
+                return obj[k]
+    return obj
 
 
 # Train on the five task-location distributions in tunable proportions.
@@ -147,22 +157,27 @@ class Logger(object):
             json.dump(summary, f, indent=2)
 
     def load_saved_model(self):
-        print('Loading Model...')
-        checkpoint = torch.load(SaverParams.MODEL_PATH + '/checkpoint.pth')
-        if SaverParams.LOAD_FROM == 'best':
-            model = 'best_model'
-        else:
-            model = 'model'
+        ckpt_path = getattr(SaverParams, 'LOAD_CHECKPOINT_PATH', None) or (SaverParams.MODEL_PATH + '/checkpoint.pth')
+        print('Loading Model from', ckpt_path)
+        checkpoint = torch.load(ckpt_path, map_location='cpu')
+        model = 'best_model' if SaverParams.LOAD_FROM == 'best' else 'model'
+        # global net = current@20k (continue the trajectory; optimizer stays consistent)
         self.global_net.load_state_dict(checkpoint[model])
-        # the baseline ("model to beat") stays the historical best, so best-tracking
-        # continues against the real best across a resume instead of resetting to the
-        # final model -- keeps it consistent with the restored best_perf.
-        self.baseline_net.load_state_dict(checkpoint.get('best_model', checkpoint[model]))
-        self.optimizer.load_state_dict(checkpoint['optimizer'])
-        self.lr_decay.load_state_dict(checkpoint['lr_decay'])
-        curr_episode = checkpoint['episode']
-        curr_level = checkpoint['level']
-        best_perf = checkpoint['best_perf']
+        # baseline ("model to beat") = historical best; prefer a separate best file if given,
+        # so best-tracking continues against the real best instead of resetting to current.
+        best_path = getattr(SaverParams, 'LOAD_BEST_PATH', None)
+        if best_path and os.path.exists(best_path):
+            self.baseline_net.load_state_dict(_extract_state_dict(torch.load(best_path, map_location='cpu')))
+            print('baseline (best) loaded from', best_path)
+        else:
+            self.baseline_net.load_state_dict(checkpoint.get('best_model', checkpoint[model]))
+        if 'optimizer' in checkpoint:
+            self.optimizer.load_state_dict(checkpoint['optimizer'])
+        if 'lr_decay' in checkpoint:
+            self.lr_decay.load_state_dict(checkpoint['lr_decay'])
+        curr_episode = checkpoint.get('episode', 0)
+        curr_level = checkpoint.get('level', 0)
+        best_perf = checkpoint.get('best_perf', -200)
         dist_weights = checkpoint.get('dist_weights', None)
         print("curr_episode set to ", curr_episode)
         print("best_perf so far is ", best_perf)
@@ -277,6 +292,10 @@ def main():
     dist_perf = {d: {k: [] for k in dist_perf_keys} for d in LOCATION_DISTS}  # rolling per-distribution stats
     training_data = []
 
+    # next episode at which to run the online LLM reweighting loop
+    reweight_every = getattr(TrainParams, 'REWEIGHT_EVERY', 0) if getattr(TrainParams, 'ONLINE_REWEIGHT', False) else 0
+    next_reweight = (curr_episode // reweight_every + 1) * reweight_every if reweight_every else None
+
     try:
         while curr_episode < TrainParams.MAX_EPISODE:
             # wait for any job to be completed
@@ -381,6 +400,23 @@ def main():
                     dist_scheduler.set_weights(new_weights)
                     print('reloaded distribution weights:', dist_scheduler.weights, '-> quota:', dist_scheduler.quota)
                 logger.save_model(curr_episode, curr_level, best_perf, dist_scheduler.weights)
+
+            # ---- online LLM reweighting: eval best model on M2-M5 + greedy -> md -> DeepSeek -> new mix ----
+            if next_reweight is not None and curr_episode >= next_reweight:
+                print(f'[reweight] episode {curr_episode}: evaluating best model on {TrainParams.REWEIGHT_TEST_ROOT}')
+                try:
+                    new_w, md_path = online_reweight.run(
+                        baseline_network, device, TrainParams.REWEIGHT_TEST_ROOT, curr_episode,
+                        dist_scheduler.weights, SaverParams.MODEL_PATH, TrainParams.DEEPSEEK_MODEL,
+                        floor=TrainParams.REWEIGHT_FLOOR, max_change=TrainParams.REWEIGHT_MAX_CHANGE)
+                    print(f'[reweight] report written to {md_path}')
+                    if new_w:
+                        dist_scheduler.set_weights(new_w)
+                        save_dist_weights(DIST_WEIGHTS_PATH, new_w)
+                        print('[reweight] new mix:', dist_scheduler.weights, '-> quota:', dist_scheduler.quota)
+                except Exception as exc:
+                    print('[reweight] failed, keeping current mix:', exc)
+                next_reweight += reweight_every
 
             if TrainParams.EVALUATE:
                 if curr_episode % 1024 == 0:

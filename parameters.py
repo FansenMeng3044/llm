@@ -17,8 +17,15 @@ class TrainParams:
     DECAY_STEP = 2e3
     RESET_OPT = False
     EVALUATE = True
-    MAX_EPISODE = 40000     # stop training after this many dispatched episodes (set high for "unbounded")
+    MAX_EPISODE = 50000     # resume from 20k and train to here
     EVALUATION_SAMPLES = 256
+    # --- online LLM reweighting loop ---
+    ONLINE_REWEIGHT = True
+    REWEIGHT_EVERY = 5000                                   # evaluate best model + reweight every N episodes
+    REWEIGHT_TEST_ROOT = '/data/data2/mfs/llm/RALtest_5dist'  # pre-generated M2-M5 x 5-dist test sets
+    DEEPSEEK_MODEL = 'deepseek-chat'                        # set to your exact DeepSeek model id (e.g. the "v4pro" one)
+    REWEIGHT_FLOOR = 0.5                                    # min weight per distribution
+    REWEIGHT_MAX_CHANGE = 3.0                               # max per-step weight change factor
     RESET_RAY = False
     INCREASE_DIFFICULTY = 20000
     SUMMARY_WINDOW = 8
@@ -35,12 +42,15 @@ class TrainParams:
 
 
 class SaverParams:
-    FOLDER_NAME = 'save_1'
+    FOLDER_NAME = 'save_llm'          # new run dir so it does NOT overwrite the source checkpoint
     MODEL_PATH = f'model/{FOLDER_NAME}'
     TRAIN_PATH = f'train/{FOLDER_NAME}'
     GIFS_PATH = f'gifs/{FOLDER_NAME}'
-    LOAD_MODEL = False
-    LOAD_FROM = 'current'  # 'best'
+    LOAD_MODEL = True                # resume from 20k
+    LOAD_FROM = 'current'            # continue from current@20k (optimizer-consistent); baseline<-best file below
+    # resume weights (absolute paths you already staged)
+    LOAD_CHECKPOINT_PATH = '/data/data2/mfs/llm/model/save_1 copy/checkpoint_20000.pth'
+    LOAD_BEST_PATH = '/data/data2/mfs/llm/model/save_1 copy/best_model_save_1_ep20000.pth'
     SAVE = True
     SAVE_IMG = True
     SAVE_IMG_GAP = 1000

@@ -1,0 +1,3107 @@
+{
+  "test_root": "/data/data2/mfs/llm/RALtest_5dist",
+  "scales": [
+    "M2",
+    "M3",
+    "M4",
+    "M5"
+  ],
+  "distributions": [
+    "uniform",
+    "gmm",
+    "ring",
+    "bipolar",
+    "edges"
+  ],
+  "checkpoints": [
+    {
+      "tag": "ep10000_best",
+      "rl_episode": 10000,
+      "rl_weights_key": "best_model"
+    },
+    {
+      "tag": "ep20000_best",
+      "rl_episode": 20000,
+      "rl_weights_key": "best_model"
+    },
+    {
+      "tag": "ep30000_best",
+      "rl_episode": 30000,
+      "rl_weights_key": "best_model"
+    },
+    {
+      "tag": "ep40000_best",
+      "rl_episode": 40000,
+      "rl_weights_key": "best_model"
+    },
+    {
+      "tag": "ep50000_best",
+      "rl_episode": 50000,
+      "rl_weights_key": "best_model"
+    },
+    {
+      "tag": "ep10000_ckpt",
+      "rl_episode": 10000,
+      "rl_weights_key": "best_model"
+    },
+    {
+      "tag": "ep20000_ckpt",
+      "rl_episode": 20000,
+      "rl_weights_key": "best_model"
+    },
+    {
+      "tag": "ep30000_ckpt",
+      "rl_episode": 30000,
+      "rl_weights_key": "best_model"
+    },
+    {
+      "tag": "ep40000_ckpt",
+      "rl_episode": 40000,
+      "rl_weights_key": "best_model"
+    },
+    {
+      "tag": "ep50000_ckpt",
+      "rl_episode": 50000,
+      "rl_weights_key": "best_model"
+    },
+    {
+      "tag": "final_ckpt",
+      "rl_episode": 50000,
+      "rl_weights_key": "best_model"
+    }
+  ],
+  "by_scale": {
+    "M2": {
+      "config": {
+        "agents": 15,
+        "per_species": 3,
+        "species": 5,
+        "tasks": 20,
+        "skills": 5,
+        "gamma": 1.333
+      },
+      "methods": [
+        "greedy",
+        "ep10000_best",
+        "ep20000_best",
+        "ep30000_best",
+        "ep40000_best",
+        "ep50000_best",
+        "ep10000_ckpt",
+        "ep20000_ckpt",
+        "ep30000_ckpt",
+        "ep40000_ckpt",
+        "ep50000_ckpt",
+        "final_ckpt"
+      ],
+      "per_distribution": {
+        "uniform": {
+          "greedy": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 24.8099,
+            "time_cost": 8.8103,
+            "waiting_time": 3.2089,
+            "travel_dist": 29.3817,
+            "efficiency": 2.3016,
+            "solved": 20
+          },
+          "ep10000_best": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 22.2609,
+            "time_cost": 8.076,
+            "waiting_time": 2.7142,
+            "travel_dist": 25.3107,
+            "efficiency": 2.2847,
+            "solved": 20
+          },
+          "ep20000_best": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 22.0914,
+            "time_cost": 7.7837,
+            "waiting_time": 2.9052,
+            "travel_dist": 23.6988,
+            "efficiency": 2.2929,
+            "solved": 20
+          },
+          "ep30000_best": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 22.4055,
+            "time_cost": 7.4674,
+            "waiting_time": 2.898,
+            "travel_dist": 24.5934,
+            "efficiency": 2.2533,
+            "solved": 20
+          },
+          "ep40000_best": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 21.5825,
+            "time_cost": 7.0682,
+            "waiting_time": 2.6729,
+            "travel_dist": 23.6687,
+            "efficiency": 2.2578,
+            "solved": 20
+          },
+          "ep50000_best": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 22.1095,
+            "time_cost": 7.6413,
+            "waiting_time": 2.6861,
+            "travel_dist": 25.8075,
+            "efficiency": 2.2296,
+            "solved": 20
+          },
+          "ep10000_ckpt": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 21.3572,
+            "time_cost": 7.8563,
+            "waiting_time": 2.7876,
+            "travel_dist": 23.5806,
+            "efficiency": 2.2548,
+            "solved": 20
+          },
+          "ep20000_ckpt": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 22.4302,
+            "time_cost": 7.7271,
+            "waiting_time": 2.7383,
+            "travel_dist": 24.2305,
+            "efficiency": 2.2633,
+            "solved": 20
+          },
+          "ep30000_ckpt": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 22.0408,
+            "time_cost": 7.1889,
+            "waiting_time": 2.7434,
+            "travel_dist": 25.0216,
+            "efficiency": 2.2322,
+            "solved": 20
+          },
+          "ep40000_ckpt": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 21.644,
+            "time_cost": 7.0702,
+            "waiting_time": 2.6012,
+            "travel_dist": 23.7969,
+            "efficiency": 2.2548,
+            "solved": 20
+          },
+          "ep50000_ckpt": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 21.73,
+            "time_cost": 7.5878,
+            "waiting_time": 2.733,
+            "travel_dist": 25.2889,
+            "efficiency": 2.2068,
+            "solved": 20
+          },
+          "final_ckpt": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 21.9281,
+            "time_cost": 7.586,
+            "waiting_time": 2.683,
+            "travel_dist": 25.822,
+            "efficiency": 2.227,
+            "solved": 20
+          }
+        },
+        "gmm": {
+          "greedy": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 20.5209,
+            "time_cost": 7.3665,
+            "waiting_time": 3.1248,
+            "travel_dist": 19.4103,
+            "efficiency": 2.2691,
+            "solved": 20
+          },
+          "ep10000_best": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 18.6506,
+            "time_cost": 7.5362,
+            "waiting_time": 3.0814,
+            "travel_dist": 17.3169,
+            "efficiency": 2.2565,
+            "solved": 20
+          },
+          "ep20000_best": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 18.6864,
+            "time_cost": 7.2079,
+            "waiting_time": 2.8814,
+            "travel_dist": 17.1477,
+            "efficiency": 2.2165,
+            "solved": 20
+          },
+          "ep30000_best": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 18.4801,
+            "time_cost": 6.9899,
+            "waiting_time": 2.656,
+            "travel_dist": 17.5364,
+            "efficiency": 2.2341,
+            "solved": 20
+          },
+          "ep40000_best": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 18.6139,
+            "time_cost": 6.6327,
+            "waiting_time": 2.7304,
+            "travel_dist": 17.1116,
+            "efficiency": 2.2322,
+            "solved": 20
+          },
+          "ep50000_best": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 17.959,
+            "time_cost": 6.8333,
+            "waiting_time": 2.599,
+            "travel_dist": 17.3291,
+            "efficiency": 2.1258,
+            "solved": 20
+          },
+          "ep10000_ckpt": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 18.5503,
+            "time_cost": 7.5878,
+            "waiting_time": 3.0474,
+            "travel_dist": 17.161,
+            "efficiency": 2.2167,
+            "solved": 20
+          },
+          "ep20000_ckpt": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 18.6102,
+            "time_cost": 7.339,
+            "waiting_time": 2.8671,
+            "travel_dist": 17.2735,
+            "efficiency": 2.2141,
+            "solved": 20
+          },
+          "ep30000_ckpt": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 19.0697,
+            "time_cost": 7.1087,
+            "waiting_time": 3.1892,
+            "travel_dist": 17.1556,
+            "efficiency": 2.1996,
+            "solved": 20
+          },
+          "ep40000_ckpt": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 19.257,
+            "time_cost": 6.7302,
+            "waiting_time": 3.036,
+            "travel_dist": 17.1964,
+            "efficiency": 2.2034,
+            "solved": 20
+          },
+          "ep50000_ckpt": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 18.569,
+            "time_cost": 7.0057,
+            "waiting_time": 2.9175,
+            "travel_dist": 17.2709,
+            "efficiency": 2.1844,
+            "solved": 20
+          },
+          "final_ckpt": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 18.4835,
+            "time_cost": 7.0429,
+            "waiting_time": 2.8213,
+            "travel_dist": 17.1837,
+            "efficiency": 2.1728,
+            "solved": 20
+          }
+        },
+        "ring": {
+          "greedy": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 22.3867,
+            "time_cost": 7.9756,
+            "waiting_time": 3.305,
+            "travel_dist": 24.2723,
+            "efficiency": 2.2847,
+            "solved": 20
+          },
+          "ep10000_best": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 19.8376,
+            "time_cost": 7.5363,
+            "waiting_time": 3.0036,
+            "travel_dist": 20.4807,
+            "efficiency": 2.2979,
+            "solved": 20
+          },
+          "ep20000_best": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 19.8354,
+            "time_cost": 7.115,
+            "waiting_time": 2.6219,
+            "travel_dist": 20.594,
+            "efficiency": 2.2755,
+            "solved": 20
+          },
+          "ep30000_best": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 20.4796,
+            "time_cost": 7.4623,
+            "waiting_time": 2.7867,
+            "travel_dist": 21.4478,
+            "efficiency": 2.3005,
+            "solved": 20
+          },
+          "ep40000_best": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 20.3941,
+            "time_cost": 7.0619,
+            "waiting_time": 2.6623,
+            "travel_dist": 20.895,
+            "efficiency": 2.2922,
+            "solved": 20
+          },
+          "ep50000_best": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 20.3003,
+            "time_cost": 7.2731,
+            "waiting_time": 2.7851,
+            "travel_dist": 20.6418,
+            "efficiency": 2.2549,
+            "solved": 20
+          },
+          "ep10000_ckpt": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 20.5546,
+            "time_cost": 7.8107,
+            "waiting_time": 3.0588,
+            "travel_dist": 21.3576,
+            "efficiency": 2.293,
+            "solved": 20
+          },
+          "ep20000_ckpt": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 20.0321,
+            "time_cost": 7.3478,
+            "waiting_time": 2.6417,
+            "travel_dist": 20.1724,
+            "efficiency": 2.2558,
+            "solved": 20
+          },
+          "ep30000_ckpt": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 20.3454,
+            "time_cost": 7.3314,
+            "waiting_time": 2.8432,
+            "travel_dist": 21.1138,
+            "efficiency": 2.2856,
+            "solved": 20
+          },
+          "ep40000_ckpt": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 20.541,
+            "time_cost": 7.1117,
+            "waiting_time": 2.7384,
+            "travel_dist": 20.9109,
+            "efficiency": 2.272,
+            "solved": 20
+          },
+          "ep50000_ckpt": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 19.1593,
+            "time_cost": 7.0725,
+            "waiting_time": 2.5198,
+            "travel_dist": 20.6173,
+            "efficiency": 2.2131,
+            "solved": 20
+          },
+          "final_ckpt": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 19.898,
+            "time_cost": 7.307,
+            "waiting_time": 2.5034,
+            "travel_dist": 20.7555,
+            "efficiency": 2.2717,
+            "solved": 20
+          }
+        },
+        "bipolar": {
+          "greedy": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 27.1374,
+            "time_cost": 9.6172,
+            "waiting_time": 4.7795,
+            "travel_dist": 32.1951,
+            "efficiency": 2.2094,
+            "solved": 20
+          },
+          "ep10000_best": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 21.7217,
+            "time_cost": 7.4676,
+            "waiting_time": 3.0847,
+            "travel_dist": 24.4419,
+            "efficiency": 2.2076,
+            "solved": 20
+          },
+          "ep20000_best": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 21.5635,
+            "time_cost": 7.4316,
+            "waiting_time": 2.9645,
+            "travel_dist": 24.4762,
+            "efficiency": 2.2088,
+            "solved": 20
+          },
+          "ep30000_best": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 21.8947,
+            "time_cost": 7.571,
+            "waiting_time": 2.2817,
+            "travel_dist": 27.715,
+            "efficiency": 2.1531,
+            "solved": 20
+          },
+          "ep40000_best": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 22.4208,
+            "time_cost": 7.7379,
+            "waiting_time": 2.3353,
+            "travel_dist": 27.5102,
+            "efficiency": 2.193,
+            "solved": 20
+          },
+          "ep50000_best": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 21.4267,
+            "time_cost": 8.1173,
+            "waiting_time": 1.961,
+            "travel_dist": 30.8299,
+            "efficiency": 2.1378,
+            "solved": 20
+          },
+          "ep10000_ckpt": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 21.7904,
+            "time_cost": 7.3405,
+            "waiting_time": 3.1805,
+            "travel_dist": 23.382,
+            "efficiency": 2.181,
+            "solved": 20
+          },
+          "ep20000_ckpt": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 21.6415,
+            "time_cost": 7.4254,
+            "waiting_time": 2.9573,
+            "travel_dist": 24.4577,
+            "efficiency": 2.1724,
+            "solved": 20
+          },
+          "ep30000_ckpt": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 22.5162,
+            "time_cost": 7.732,
+            "waiting_time": 2.7353,
+            "travel_dist": 27.8285,
+            "efficiency": 2.1572,
+            "solved": 20
+          },
+          "ep40000_ckpt": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 22.3323,
+            "time_cost": 7.8755,
+            "waiting_time": 2.4411,
+            "travel_dist": 27.8335,
+            "efficiency": 2.1856,
+            "solved": 20
+          },
+          "ep50000_ckpt": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 22.0174,
+            "time_cost": 8.5336,
+            "waiting_time": 2.2719,
+            "travel_dist": 30.6744,
+            "efficiency": 2.1451,
+            "solved": 20
+          },
+          "final_ckpt": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 21.5798,
+            "time_cost": 8.3379,
+            "waiting_time": 2.0596,
+            "travel_dist": 30.7266,
+            "efficiency": 2.1526,
+            "solved": 20
+          }
+        },
+        "edges": {
+          "greedy": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 29.7515,
+            "time_cost": 11.0749,
+            "waiting_time": 4.9996,
+            "travel_dist": 37.1409,
+            "efficiency": 2.1457,
+            "solved": 20
+          },
+          "ep10000_best": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 26.2987,
+            "time_cost": 9.8909,
+            "waiting_time": 4.6473,
+            "travel_dist": 30.3209,
+            "efficiency": 2.2217,
+            "solved": 20
+          },
+          "ep20000_best": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 25.0724,
+            "time_cost": 9.0801,
+            "waiting_time": 3.8581,
+            "travel_dist": 28.6958,
+            "efficiency": 2.177,
+            "solved": 20
+          },
+          "ep30000_best": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 25.3664,
+            "time_cost": 9.0341,
+            "waiting_time": 3.4462,
+            "travel_dist": 31.1676,
+            "efficiency": 2.1247,
+            "solved": 20
+          },
+          "ep40000_best": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 26.7723,
+            "time_cost": 9.0998,
+            "waiting_time": 3.7631,
+            "travel_dist": 31.8117,
+            "efficiency": 2.212,
+            "solved": 20
+          },
+          "ep50000_best": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 25.4177,
+            "time_cost": 9.3372,
+            "waiting_time": 3.2944,
+            "travel_dist": 33.15,
+            "efficiency": 2.1493,
+            "solved": 20
+          },
+          "ep10000_ckpt": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 26.6971,
+            "time_cost": 9.8641,
+            "waiting_time": 4.898,
+            "travel_dist": 29.9198,
+            "efficiency": 2.2235,
+            "solved": 20
+          },
+          "ep20000_ckpt": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 25.4262,
+            "time_cost": 9.1569,
+            "waiting_time": 3.9425,
+            "travel_dist": 28.7383,
+            "efficiency": 2.169,
+            "solved": 20
+          },
+          "ep30000_ckpt": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 25.3387,
+            "time_cost": 9.2884,
+            "waiting_time": 3.3495,
+            "travel_dist": 31.3194,
+            "efficiency": 2.1734,
+            "solved": 20
+          },
+          "ep40000_ckpt": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 25.1825,
+            "time_cost": 8.8343,
+            "waiting_time": 3.5694,
+            "travel_dist": 30.1289,
+            "efficiency": 2.158,
+            "solved": 20
+          },
+          "ep50000_ckpt": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 25.8015,
+            "time_cost": 9.3416,
+            "waiting_time": 3.3649,
+            "travel_dist": 32.528,
+            "efficiency": 2.1541,
+            "solved": 20
+          },
+          "final_ckpt": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 25.7615,
+            "time_cost": 9.6427,
+            "waiting_time": 3.5979,
+            "travel_dist": 33.3473,
+            "efficiency": 2.1823,
+            "solved": 20
+          }
+        }
+      },
+      "overall": {
+        "greedy": {
+          "instances": 100,
+          "success_rate": 1.0,
+          "makespan": 24.9213,
+          "time_cost": 8.9689,
+          "waiting_time": 3.8836,
+          "travel_dist": 28.4801,
+          "efficiency": 2.2421,
+          "solved": 100
+        },
+        "ep10000_best": {
+          "instances": 100,
+          "success_rate": 1.0,
+          "makespan": 21.7539,
+          "time_cost": 8.1014,
+          "waiting_time": 3.3062,
+          "travel_dist": 23.5742,
+          "efficiency": 2.2537,
+          "solved": 100
+        },
+        "ep20000_best": {
+          "instances": 100,
+          "success_rate": 1.0,
+          "makespan": 21.4498,
+          "time_cost": 7.7237,
+          "waiting_time": 3.0462,
+          "travel_dist": 22.9225,
+          "efficiency": 2.2341,
+          "solved": 100
+        },
+        "ep30000_best": {
+          "instances": 100,
+          "success_rate": 1.0,
+          "makespan": 21.7253,
+          "time_cost": 7.7049,
+          "waiting_time": 2.8137,
+          "travel_dist": 24.4921,
+          "efficiency": 2.2131,
+          "solved": 100
+        },
+        "ep40000_best": {
+          "instances": 100,
+          "success_rate": 1.0,
+          "makespan": 21.9567,
+          "time_cost": 7.5201,
+          "waiting_time": 2.8328,
+          "travel_dist": 24.1994,
+          "efficiency": 2.2374,
+          "solved": 100
+        },
+        "ep50000_best": {
+          "instances": 100,
+          "success_rate": 1.0,
+          "makespan": 21.4427,
+          "time_cost": 7.8404,
+          "waiting_time": 2.6651,
+          "travel_dist": 25.5516,
+          "efficiency": 2.1795,
+          "solved": 100
+        },
+        "ep10000_ckpt": {
+          "instances": 100,
+          "success_rate": 1.0,
+          "makespan": 21.7899,
+          "time_cost": 8.0919,
+          "waiting_time": 3.3944,
+          "travel_dist": 23.0802,
+          "efficiency": 2.2338,
+          "solved": 100
+        },
+        "ep20000_ckpt": {
+          "instances": 100,
+          "success_rate": 1.0,
+          "makespan": 21.628,
+          "time_cost": 7.7992,
+          "waiting_time": 3.0294,
+          "travel_dist": 22.9745,
+          "efficiency": 2.2149,
+          "solved": 100
+        },
+        "ep30000_ckpt": {
+          "instances": 100,
+          "success_rate": 1.0,
+          "makespan": 21.8622,
+          "time_cost": 7.7299,
+          "waiting_time": 2.9721,
+          "travel_dist": 24.4878,
+          "efficiency": 2.2096,
+          "solved": 100
+        },
+        "ep40000_ckpt": {
+          "instances": 100,
+          "success_rate": 1.0,
+          "makespan": 21.7914,
+          "time_cost": 7.5244,
+          "waiting_time": 2.8772,
+          "travel_dist": 23.9733,
+          "efficiency": 2.2147,
+          "solved": 100
+        },
+        "ep50000_ckpt": {
+          "instances": 100,
+          "success_rate": 1.0,
+          "makespan": 21.4554,
+          "time_cost": 7.9083,
+          "waiting_time": 2.7614,
+          "travel_dist": 25.2759,
+          "efficiency": 2.1807,
+          "solved": 100
+        },
+        "final_ckpt": {
+          "instances": 100,
+          "success_rate": 1.0,
+          "makespan": 21.5302,
+          "time_cost": 7.9833,
+          "waiting_time": 2.733,
+          "travel_dist": 25.567,
+          "efficiency": 2.2013,
+          "solved": 100
+        }
+      }
+    },
+    "M3": {
+      "config": {
+        "agents": 25,
+        "per_species": 5,
+        "species": 5,
+        "tasks": 20,
+        "skills": 5,
+        "gamma": 0.8
+      },
+      "methods": [
+        "greedy",
+        "ep10000_best",
+        "ep20000_best",
+        "ep30000_best",
+        "ep40000_best",
+        "ep50000_best",
+        "ep10000_ckpt",
+        "ep20000_ckpt",
+        "ep30000_ckpt",
+        "ep40000_ckpt",
+        "ep50000_ckpt",
+        "final_ckpt"
+      ],
+      "per_distribution": {
+        "uniform": {
+          "greedy": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 18.6921,
+            "time_cost": 5.6636,
+            "waiting_time": 1.8386,
+            "travel_dist": 33.9821,
+            "efficiency": 2.2113,
+            "solved": 20
+          },
+          "ep10000_best": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 17.2579,
+            "time_cost": 5.1417,
+            "waiting_time": 1.8095,
+            "travel_dist": 31.254,
+            "efficiency": 2.2361,
+            "solved": 20
+          },
+          "ep20000_best": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 17.3504,
+            "time_cost": 4.9641,
+            "waiting_time": 1.72,
+            "travel_dist": 30.6964,
+            "efficiency": 2.2219,
+            "solved": 20
+          },
+          "ep30000_best": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 17.2812,
+            "time_cost": 4.9405,
+            "waiting_time": 1.4441,
+            "travel_dist": 31.7517,
+            "efficiency": 2.2231,
+            "solved": 20
+          },
+          "ep40000_best": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 17.5885,
+            "time_cost": 4.5597,
+            "waiting_time": 1.5111,
+            "travel_dist": 30.3168,
+            "efficiency": 2.1907,
+            "solved": 20
+          },
+          "ep50000_best": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 17.9243,
+            "time_cost": 4.9176,
+            "waiting_time": 1.4927,
+            "travel_dist": 32.2622,
+            "efficiency": 2.1629,
+            "solved": 20
+          },
+          "ep10000_ckpt": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 16.9402,
+            "time_cost": 5.044,
+            "waiting_time": 1.6293,
+            "travel_dist": 30.4046,
+            "efficiency": 2.2091,
+            "solved": 20
+          },
+          "ep20000_ckpt": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 16.8354,
+            "time_cost": 4.8783,
+            "waiting_time": 1.6183,
+            "travel_dist": 30.0728,
+            "efficiency": 2.2225,
+            "solved": 20
+          },
+          "ep30000_ckpt": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 17.0344,
+            "time_cost": 4.9097,
+            "waiting_time": 1.4406,
+            "travel_dist": 31.1753,
+            "efficiency": 2.2107,
+            "solved": 20
+          },
+          "ep40000_ckpt": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 17.1391,
+            "time_cost": 4.6807,
+            "waiting_time": 1.4073,
+            "travel_dist": 31.4686,
+            "efficiency": 2.2069,
+            "solved": 20
+          },
+          "ep50000_ckpt": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 16.6282,
+            "time_cost": 4.8778,
+            "waiting_time": 1.4874,
+            "travel_dist": 32.1696,
+            "efficiency": 2.1712,
+            "solved": 20
+          },
+          "final_ckpt": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 16.9268,
+            "time_cost": 4.7962,
+            "waiting_time": 1.4258,
+            "travel_dist": 31.3528,
+            "efficiency": 2.1925,
+            "solved": 20
+          }
+        },
+        "gmm": {
+          "greedy": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 16.3267,
+            "time_cost": 5.0112,
+            "waiting_time": 1.6494,
+            "travel_dist": 27.6129,
+            "efficiency": 2.2317,
+            "solved": 20
+          },
+          "ep10000_best": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 14.5595,
+            "time_cost": 4.8515,
+            "waiting_time": 1.839,
+            "travel_dist": 25.4729,
+            "efficiency": 2.1913,
+            "solved": 20
+          },
+          "ep20000_best": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 15.0367,
+            "time_cost": 4.849,
+            "waiting_time": 1.9427,
+            "travel_dist": 25.719,
+            "efficiency": 2.164,
+            "solved": 20
+          },
+          "ep30000_best": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 14.9863,
+            "time_cost": 4.7218,
+            "waiting_time": 1.8228,
+            "travel_dist": 25.8196,
+            "efficiency": 2.2076,
+            "solved": 20
+          },
+          "ep40000_best": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 15.0844,
+            "time_cost": 4.4497,
+            "waiting_time": 1.6564,
+            "travel_dist": 25.7029,
+            "efficiency": 2.1811,
+            "solved": 20
+          },
+          "ep50000_best": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 15.0916,
+            "time_cost": 4.6899,
+            "waiting_time": 1.7845,
+            "travel_dist": 26.3208,
+            "efficiency": 2.1377,
+            "solved": 20
+          },
+          "ep10000_ckpt": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 14.836,
+            "time_cost": 4.9752,
+            "waiting_time": 2.0048,
+            "travel_dist": 25.6643,
+            "efficiency": 2.1945,
+            "solved": 20
+          },
+          "ep20000_ckpt": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 15.0511,
+            "time_cost": 4.7482,
+            "waiting_time": 1.7231,
+            "travel_dist": 25.4992,
+            "efficiency": 2.1881,
+            "solved": 20
+          },
+          "ep30000_ckpt": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 15.332,
+            "time_cost": 4.6262,
+            "waiting_time": 1.7259,
+            "travel_dist": 25.7078,
+            "efficiency": 2.1972,
+            "solved": 20
+          },
+          "ep40000_ckpt": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 15.4058,
+            "time_cost": 4.4062,
+            "waiting_time": 1.7474,
+            "travel_dist": 25.6157,
+            "efficiency": 2.1755,
+            "solved": 20
+          },
+          "ep50000_ckpt": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 15.2177,
+            "time_cost": 4.7046,
+            "waiting_time": 1.7697,
+            "travel_dist": 26.3194,
+            "efficiency": 2.1662,
+            "solved": 20
+          },
+          "final_ckpt": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 15.2536,
+            "time_cost": 4.8082,
+            "waiting_time": 1.7688,
+            "travel_dist": 26.5114,
+            "efficiency": 2.183,
+            "solved": 20
+          }
+        },
+        "ring": {
+          "greedy": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 16.5152,
+            "time_cost": 4.7098,
+            "waiting_time": 1.5083,
+            "travel_dist": 29.5892,
+            "efficiency": 2.2363,
+            "solved": 20
+          },
+          "ep10000_best": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 14.7143,
+            "time_cost": 4.5722,
+            "waiting_time": 1.5571,
+            "travel_dist": 27.3936,
+            "efficiency": 2.2604,
+            "solved": 20
+          },
+          "ep20000_best": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 14.5964,
+            "time_cost": 4.4271,
+            "waiting_time": 1.5055,
+            "travel_dist": 27.2878,
+            "efficiency": 2.2456,
+            "solved": 20
+          },
+          "ep30000_best": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 14.9852,
+            "time_cost": 4.436,
+            "waiting_time": 1.4984,
+            "travel_dist": 27.5611,
+            "efficiency": 2.214,
+            "solved": 20
+          },
+          "ep40000_best": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 14.7671,
+            "time_cost": 4.0637,
+            "waiting_time": 1.3645,
+            "travel_dist": 26.9561,
+            "efficiency": 2.1661,
+            "solved": 20
+          },
+          "ep50000_best": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 14.5279,
+            "time_cost": 4.4484,
+            "waiting_time": 1.4147,
+            "travel_dist": 27.9369,
+            "efficiency": 2.1766,
+            "solved": 20
+          },
+          "ep10000_ckpt": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 14.446,
+            "time_cost": 4.5408,
+            "waiting_time": 1.4873,
+            "travel_dist": 27.6647,
+            "efficiency": 2.234,
+            "solved": 20
+          },
+          "ep20000_ckpt": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 15.3726,
+            "time_cost": 4.4643,
+            "waiting_time": 1.5246,
+            "travel_dist": 27.0383,
+            "efficiency": 2.2225,
+            "solved": 20
+          },
+          "ep30000_ckpt": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 14.6484,
+            "time_cost": 4.3773,
+            "waiting_time": 1.2936,
+            "travel_dist": 27.5064,
+            "efficiency": 2.2006,
+            "solved": 20
+          },
+          "ep40000_ckpt": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 14.8722,
+            "time_cost": 4.2016,
+            "waiting_time": 1.3761,
+            "travel_dist": 26.8366,
+            "efficiency": 2.2402,
+            "solved": 20
+          },
+          "ep50000_ckpt": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 14.73,
+            "time_cost": 4.5393,
+            "waiting_time": 1.4114,
+            "travel_dist": 27.8494,
+            "efficiency": 2.1921,
+            "solved": 20
+          },
+          "final_ckpt": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 15.0021,
+            "time_cost": 4.5801,
+            "waiting_time": 1.3791,
+            "travel_dist": 28.486,
+            "efficiency": 2.2248,
+            "solved": 20
+          }
+        },
+        "bipolar": {
+          "greedy": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 18.5165,
+            "time_cost": 5.4371,
+            "waiting_time": 1.8983,
+            "travel_dist": 36.234,
+            "efficiency": 2.2723,
+            "solved": 20
+          },
+          "ep10000_best": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 17.7391,
+            "time_cost": 5.0591,
+            "waiting_time": 1.7064,
+            "travel_dist": 32.5296,
+            "efficiency": 2.3123,
+            "solved": 20
+          },
+          "ep20000_best": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 17.9873,
+            "time_cost": 5.096,
+            "waiting_time": 1.5157,
+            "travel_dist": 32.6333,
+            "efficiency": 2.3628,
+            "solved": 20
+          },
+          "ep30000_best": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 17.6595,
+            "time_cost": 5.0771,
+            "waiting_time": 1.6106,
+            "travel_dist": 35.2964,
+            "efficiency": 2.3057,
+            "solved": 20
+          },
+          "ep40000_best": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 17.8176,
+            "time_cost": 5.1217,
+            "waiting_time": 1.4684,
+            "travel_dist": 34.3008,
+            "efficiency": 2.3323,
+            "solved": 20
+          },
+          "ep50000_best": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 17.7295,
+            "time_cost": 5.31,
+            "waiting_time": 1.3812,
+            "travel_dist": 36.7313,
+            "efficiency": 2.233,
+            "solved": 20
+          },
+          "ep10000_ckpt": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 17.7874,
+            "time_cost": 5.1181,
+            "waiting_time": 1.6223,
+            "travel_dist": 33.9683,
+            "efficiency": 2.3282,
+            "solved": 20
+          },
+          "ep20000_ckpt": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 17.8809,
+            "time_cost": 4.8491,
+            "waiting_time": 1.4917,
+            "travel_dist": 32.8469,
+            "efficiency": 2.343,
+            "solved": 20
+          },
+          "ep30000_ckpt": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 17.6529,
+            "time_cost": 5.1691,
+            "waiting_time": 1.4139,
+            "travel_dist": 34.7735,
+            "efficiency": 2.3187,
+            "solved": 20
+          },
+          "ep40000_ckpt": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 18.063,
+            "time_cost": 5.0207,
+            "waiting_time": 1.3915,
+            "travel_dist": 34.8914,
+            "efficiency": 2.2905,
+            "solved": 20
+          },
+          "ep50000_ckpt": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 17.3459,
+            "time_cost": 5.3948,
+            "waiting_time": 1.3891,
+            "travel_dist": 37.423,
+            "efficiency": 2.2018,
+            "solved": 20
+          },
+          "final_ckpt": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 18.3593,
+            "time_cost": 5.7534,
+            "waiting_time": 1.6508,
+            "travel_dist": 37.8148,
+            "efficiency": 2.2868,
+            "solved": 20
+          }
+        },
+        "edges": {
+          "greedy": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 20.8848,
+            "time_cost": 6.6451,
+            "waiting_time": 2.1283,
+            "travel_dist": 42.8277,
+            "efficiency": 2.2133,
+            "solved": 20
+          },
+          "ep10000_best": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 19.2718,
+            "time_cost": 5.9955,
+            "waiting_time": 1.9714,
+            "travel_dist": 38.5587,
+            "efficiency": 2.2801,
+            "solved": 20
+          },
+          "ep20000_best": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 20.1783,
+            "time_cost": 6.1953,
+            "waiting_time": 2.1643,
+            "travel_dist": 39.9852,
+            "efficiency": 2.2975,
+            "solved": 20
+          },
+          "ep30000_best": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 19.7176,
+            "time_cost": 5.8636,
+            "waiting_time": 1.8157,
+            "travel_dist": 39.5688,
+            "efficiency": 2.2332,
+            "solved": 20
+          },
+          "ep40000_best": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 19.9642,
+            "time_cost": 5.6744,
+            "waiting_time": 1.7984,
+            "travel_dist": 38.5927,
+            "efficiency": 2.2627,
+            "solved": 20
+          },
+          "ep50000_best": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 19.2331,
+            "time_cost": 5.691,
+            "waiting_time": 1.5324,
+            "travel_dist": 40.1239,
+            "efficiency": 2.1766,
+            "solved": 20
+          },
+          "ep10000_ckpt": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 19.2716,
+            "time_cost": 5.8116,
+            "waiting_time": 2.0689,
+            "travel_dist": 37.9944,
+            "efficiency": 2.2302,
+            "solved": 20
+          },
+          "ep20000_ckpt": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 19.5002,
+            "time_cost": 6.0251,
+            "waiting_time": 2.0405,
+            "travel_dist": 38.7495,
+            "efficiency": 2.2652,
+            "solved": 20
+          },
+          "ep30000_ckpt": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 19.2173,
+            "time_cost": 5.7223,
+            "waiting_time": 1.7834,
+            "travel_dist": 39.3535,
+            "efficiency": 2.2688,
+            "solved": 20
+          },
+          "ep40000_ckpt": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 19.4988,
+            "time_cost": 5.6516,
+            "waiting_time": 1.8515,
+            "travel_dist": 38.3281,
+            "efficiency": 2.2274,
+            "solved": 20
+          },
+          "ep50000_ckpt": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 19.4937,
+            "time_cost": 5.999,
+            "waiting_time": 1.8121,
+            "travel_dist": 40.3481,
+            "efficiency": 2.2639,
+            "solved": 20
+          },
+          "final_ckpt": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 19.4077,
+            "time_cost": 5.7924,
+            "waiting_time": 1.7455,
+            "travel_dist": 39.9173,
+            "efficiency": 2.2287,
+            "solved": 20
+          }
+        }
+      },
+      "overall": {
+        "greedy": {
+          "instances": 100,
+          "success_rate": 1.0,
+          "makespan": 18.1871,
+          "time_cost": 5.4934,
+          "waiting_time": 1.8046,
+          "travel_dist": 34.0492,
+          "efficiency": 2.233,
+          "solved": 100
+        },
+        "ep10000_best": {
+          "instances": 100,
+          "success_rate": 1.0,
+          "makespan": 16.7085,
+          "time_cost": 5.124,
+          "waiting_time": 1.7767,
+          "travel_dist": 31.0418,
+          "efficiency": 2.256,
+          "solved": 100
+        },
+        "ep20000_best": {
+          "instances": 100,
+          "success_rate": 1.0,
+          "makespan": 17.0298,
+          "time_cost": 5.1063,
+          "waiting_time": 1.7696,
+          "travel_dist": 31.2644,
+          "efficiency": 2.2584,
+          "solved": 100
+        },
+        "ep30000_best": {
+          "instances": 100,
+          "success_rate": 1.0,
+          "makespan": 16.926,
+          "time_cost": 5.0078,
+          "waiting_time": 1.6383,
+          "travel_dist": 31.9995,
+          "efficiency": 2.2367,
+          "solved": 100
+        },
+        "ep40000_best": {
+          "instances": 100,
+          "success_rate": 1.0,
+          "makespan": 17.0444,
+          "time_cost": 4.7738,
+          "waiting_time": 1.5598,
+          "travel_dist": 31.1739,
+          "efficiency": 2.2266,
+          "solved": 100
+        },
+        "ep50000_best": {
+          "instances": 100,
+          "success_rate": 1.0,
+          "makespan": 16.9013,
+          "time_cost": 5.0114,
+          "waiting_time": 1.5211,
+          "travel_dist": 32.675,
+          "efficiency": 2.1774,
+          "solved": 100
+        },
+        "ep10000_ckpt": {
+          "instances": 100,
+          "success_rate": 1.0,
+          "makespan": 16.6562,
+          "time_cost": 5.0979,
+          "waiting_time": 1.7625,
+          "travel_dist": 31.1393,
+          "efficiency": 2.2392,
+          "solved": 100
+        },
+        "ep20000_ckpt": {
+          "instances": 100,
+          "success_rate": 1.0,
+          "makespan": 16.928,
+          "time_cost": 4.993,
+          "waiting_time": 1.6796,
+          "travel_dist": 30.8414,
+          "efficiency": 2.2483,
+          "solved": 100
+        },
+        "ep30000_ckpt": {
+          "instances": 100,
+          "success_rate": 1.0,
+          "makespan": 16.777,
+          "time_cost": 4.9609,
+          "waiting_time": 1.5315,
+          "travel_dist": 31.7033,
+          "efficiency": 2.2392,
+          "solved": 100
+        },
+        "ep40000_ckpt": {
+          "instances": 100,
+          "success_rate": 1.0,
+          "makespan": 16.9958,
+          "time_cost": 4.7921,
+          "waiting_time": 1.5548,
+          "travel_dist": 31.4281,
+          "efficiency": 2.2281,
+          "solved": 100
+        },
+        "ep50000_ckpt": {
+          "instances": 100,
+          "success_rate": 1.0,
+          "makespan": 16.6831,
+          "time_cost": 5.1031,
+          "waiting_time": 1.574,
+          "travel_dist": 32.8219,
+          "efficiency": 2.199,
+          "solved": 100
+        },
+        "final_ckpt": {
+          "instances": 100,
+          "success_rate": 1.0,
+          "makespan": 16.9899,
+          "time_cost": 5.1461,
+          "waiting_time": 1.594,
+          "travel_dist": 32.8165,
+          "efficiency": 2.2232,
+          "solved": 100
+        }
+      }
+    },
+    "M4": {
+      "config": {
+        "agents": 25,
+        "per_species": 5,
+        "species": 5,
+        "tasks": 50,
+        "skills": 5,
+        "gamma": 2.0
+      },
+      "methods": [
+        "greedy",
+        "ep10000_best",
+        "ep20000_best",
+        "ep30000_best",
+        "ep40000_best",
+        "ep50000_best",
+        "ep10000_ckpt",
+        "ep20000_ckpt",
+        "ep30000_ckpt",
+        "ep40000_ckpt",
+        "ep50000_ckpt",
+        "final_ckpt"
+      ],
+      "per_distribution": {
+        "uniform": {
+          "greedy": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 33.2926,
+            "time_cost": 12.7861,
+            "waiting_time": 4.275,
+            "travel_dist": 65.5047,
+            "efficiency": 2.2275,
+            "solved": 20
+          },
+          "ep10000_best": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 28.5317,
+            "time_cost": 11.2954,
+            "waiting_time": 4.3936,
+            "travel_dist": 47.3951,
+            "efficiency": 2.254,
+            "solved": 20
+          },
+          "ep20000_best": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 29.029,
+            "time_cost": 11.1534,
+            "waiting_time": 4.4897,
+            "travel_dist": 46.0414,
+            "efficiency": 2.2324,
+            "solved": 20
+          },
+          "ep30000_best": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 28.6729,
+            "time_cost": 10.6419,
+            "waiting_time": 4.127,
+            "travel_dist": 49.2308,
+            "efficiency": 2.2285,
+            "solved": 20
+          },
+          "ep40000_best": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 28.6834,
+            "time_cost": 10.152,
+            "waiting_time": 4.2916,
+            "travel_dist": 47.3458,
+            "efficiency": 2.2197,
+            "solved": 20
+          },
+          "ep50000_best": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 28.3399,
+            "time_cost": 10.7778,
+            "waiting_time": 3.8105,
+            "travel_dist": 50.3055,
+            "efficiency": 2.1967,
+            "solved": 20
+          },
+          "ep10000_ckpt": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 29.8036,
+            "time_cost": 11.8,
+            "waiting_time": 4.9358,
+            "travel_dist": 48.6484,
+            "efficiency": 2.2821,
+            "solved": 20
+          },
+          "ep20000_ckpt": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 29.2025,
+            "time_cost": 11.1062,
+            "waiting_time": 4.3857,
+            "travel_dist": 45.1336,
+            "efficiency": 2.2222,
+            "solved": 20
+          },
+          "ep30000_ckpt": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 28.9228,
+            "time_cost": 10.7789,
+            "waiting_time": 4.364,
+            "travel_dist": 48.2258,
+            "efficiency": 2.2115,
+            "solved": 20
+          },
+          "ep40000_ckpt": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 29.5368,
+            "time_cost": 10.1494,
+            "waiting_time": 4.2432,
+            "travel_dist": 47.3134,
+            "efficiency": 2.2035,
+            "solved": 20
+          },
+          "ep50000_ckpt": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 28.496,
+            "time_cost": 10.6167,
+            "waiting_time": 3.5762,
+            "travel_dist": 50.289,
+            "efficiency": 2.192,
+            "solved": 20
+          },
+          "final_ckpt": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 28.5646,
+            "time_cost": 10.8177,
+            "waiting_time": 3.7155,
+            "travel_dist": 50.427,
+            "efficiency": 2.1857,
+            "solved": 20
+          }
+        },
+        "gmm": {
+          "greedy": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 23.428,
+            "time_cost": 8.469,
+            "waiting_time": 2.572,
+            "travel_dist": 36.806,
+            "efficiency": 2.3395,
+            "solved": 20
+          },
+          "ep10000_best": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 20.7334,
+            "time_cost": 8.8252,
+            "waiting_time": 2.4001,
+            "travel_dist": 29.6403,
+            "efficiency": 2.3436,
+            "solved": 20
+          },
+          "ep20000_best": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 21.4004,
+            "time_cost": 8.6729,
+            "waiting_time": 2.4478,
+            "travel_dist": 29.8753,
+            "efficiency": 2.3173,
+            "solved": 20
+          },
+          "ep30000_best": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 21.282,
+            "time_cost": 8.1269,
+            "waiting_time": 2.4623,
+            "travel_dist": 30.6804,
+            "efficiency": 2.2954,
+            "solved": 20
+          },
+          "ep40000_best": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 21.2889,
+            "time_cost": 7.691,
+            "waiting_time": 2.511,
+            "travel_dist": 29.8164,
+            "efficiency": 2.3096,
+            "solved": 20
+          },
+          "ep50000_best": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 20.5109,
+            "time_cost": 8.2937,
+            "waiting_time": 2.3658,
+            "travel_dist": 30.1312,
+            "efficiency": 2.238,
+            "solved": 20
+          },
+          "ep10000_ckpt": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 21.0136,
+            "time_cost": 8.8521,
+            "waiting_time": 2.4527,
+            "travel_dist": 30.1021,
+            "efficiency": 2.3203,
+            "solved": 20
+          },
+          "ep20000_ckpt": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 21.0519,
+            "time_cost": 8.4003,
+            "waiting_time": 2.2163,
+            "travel_dist": 29.8873,
+            "efficiency": 2.2986,
+            "solved": 20
+          },
+          "ep30000_ckpt": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 21.0627,
+            "time_cost": 8.2116,
+            "waiting_time": 2.3583,
+            "travel_dist": 30.2752,
+            "efficiency": 2.3108,
+            "solved": 20
+          },
+          "ep40000_ckpt": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 21.5233,
+            "time_cost": 7.793,
+            "waiting_time": 2.6382,
+            "travel_dist": 29.8629,
+            "efficiency": 2.3287,
+            "solved": 20
+          },
+          "ep50000_ckpt": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 20.8146,
+            "time_cost": 8.4067,
+            "waiting_time": 2.4142,
+            "travel_dist": 30.6854,
+            "efficiency": 2.2654,
+            "solved": 20
+          },
+          "final_ckpt": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 20.1505,
+            "time_cost": 8.1693,
+            "waiting_time": 2.1663,
+            "travel_dist": 30.5704,
+            "efficiency": 2.2288,
+            "solved": 20
+          }
+        },
+        "ring": {
+          "greedy": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 29.0991,
+            "time_cost": 11.1272,
+            "waiting_time": 3.7586,
+            "travel_dist": 54.5707,
+            "efficiency": 2.2883,
+            "solved": 20
+          },
+          "ep10000_best": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 25.3837,
+            "time_cost": 10.2141,
+            "waiting_time": 3.7168,
+            "travel_dist": 39.1632,
+            "efficiency": 2.2992,
+            "solved": 20
+          },
+          "ep20000_best": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 24.898,
+            "time_cost": 9.7943,
+            "waiting_time": 3.6217,
+            "travel_dist": 37.736,
+            "efficiency": 2.2677,
+            "solved": 20
+          },
+          "ep30000_best": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 25.2963,
+            "time_cost": 9.2907,
+            "waiting_time": 3.3508,
+            "travel_dist": 40.0802,
+            "efficiency": 2.2538,
+            "solved": 20
+          },
+          "ep40000_best": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 25.1736,
+            "time_cost": 8.8669,
+            "waiting_time": 3.2856,
+            "travel_dist": 39.3188,
+            "efficiency": 2.2663,
+            "solved": 20
+          },
+          "ep50000_best": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 24.3322,
+            "time_cost": 9.2735,
+            "waiting_time": 2.9321,
+            "travel_dist": 40.5864,
+            "efficiency": 2.2373,
+            "solved": 20
+          },
+          "ep10000_ckpt": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 24.6221,
+            "time_cost": 9.9359,
+            "waiting_time": 3.6497,
+            "travel_dist": 38.6397,
+            "efficiency": 2.2846,
+            "solved": 20
+          },
+          "ep20000_ckpt": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 24.7993,
+            "time_cost": 9.6284,
+            "waiting_time": 3.4762,
+            "travel_dist": 38.1552,
+            "efficiency": 2.2597,
+            "solved": 20
+          },
+          "ep30000_ckpt": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 25.0451,
+            "time_cost": 9.388,
+            "waiting_time": 3.333,
+            "travel_dist": 39.4314,
+            "efficiency": 2.2515,
+            "solved": 20
+          },
+          "ep40000_ckpt": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 24.2927,
+            "time_cost": 8.6042,
+            "waiting_time": 2.956,
+            "travel_dist": 39.1728,
+            "efficiency": 2.2604,
+            "solved": 20
+          },
+          "ep50000_ckpt": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 24.5297,
+            "time_cost": 9.4064,
+            "waiting_time": 3.0967,
+            "travel_dist": 40.8588,
+            "efficiency": 2.2177,
+            "solved": 20
+          },
+          "final_ckpt": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 25.2977,
+            "time_cost": 9.4095,
+            "waiting_time": 3.2047,
+            "travel_dist": 41.2767,
+            "efficiency": 2.2489,
+            "solved": 20
+          }
+        },
+        "bipolar": {
+          "greedy": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 37.3015,
+            "time_cost": 14.4574,
+            "waiting_time": 6.3193,
+            "travel_dist": 72.1205,
+            "efficiency": 2.1926,
+            "solved": 20
+          },
+          "ep10000_best": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 28.2123,
+            "time_cost": 10.776,
+            "waiting_time": 4.7586,
+            "travel_dist": 44.7412,
+            "efficiency": 2.1865,
+            "solved": 20
+          },
+          "ep20000_best": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 28.6731,
+            "time_cost": 10.857,
+            "waiting_time": 4.3058,
+            "travel_dist": 46.8923,
+            "efficiency": 2.1871,
+            "solved": 20
+          },
+          "ep30000_best": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 28.1482,
+            "time_cost": 10.9796,
+            "waiting_time": 3.544,
+            "travel_dist": 53.2611,
+            "efficiency": 2.17,
+            "solved": 20
+          },
+          "ep40000_best": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 28.5279,
+            "time_cost": 10.6176,
+            "waiting_time": 3.2404,
+            "travel_dist": 51.4683,
+            "efficiency": 2.1453,
+            "solved": 20
+          },
+          "ep50000_best": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 27.9904,
+            "time_cost": 11.5928,
+            "waiting_time": 2.8678,
+            "travel_dist": 57.5798,
+            "efficiency": 2.1381,
+            "solved": 20
+          },
+          "ep10000_ckpt": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 27.8612,
+            "time_cost": 10.5597,
+            "waiting_time": 4.4992,
+            "travel_dist": 43.6583,
+            "efficiency": 2.1877,
+            "solved": 20
+          },
+          "ep20000_ckpt": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 28.3791,
+            "time_cost": 10.992,
+            "waiting_time": 4.3473,
+            "travel_dist": 46.1244,
+            "efficiency": 2.2192,
+            "solved": 20
+          },
+          "ep30000_ckpt": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 28.5994,
+            "time_cost": 11.1969,
+            "waiting_time": 3.623,
+            "travel_dist": 54.3238,
+            "efficiency": 2.1731,
+            "solved": 20
+          },
+          "ep40000_ckpt": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 28.8814,
+            "time_cost": 10.9494,
+            "waiting_time": 3.3253,
+            "travel_dist": 51.5255,
+            "efficiency": 2.1814,
+            "solved": 20
+          },
+          "ep50000_ckpt": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 27.7279,
+            "time_cost": 11.4618,
+            "waiting_time": 2.8857,
+            "travel_dist": 57.4297,
+            "efficiency": 2.1287,
+            "solved": 20
+          },
+          "final_ckpt": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 27.7397,
+            "time_cost": 11.275,
+            "waiting_time": 2.5767,
+            "travel_dist": 57.6125,
+            "efficiency": 2.1216,
+            "solved": 20
+          }
+        },
+        "edges": {
+          "greedy": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 39.7885,
+            "time_cost": 16.1537,
+            "waiting_time": 6.0994,
+            "travel_dist": 87.3592,
+            "efficiency": 2.2224,
+            "solved": 20
+          },
+          "ep10000_best": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 30.9908,
+            "time_cost": 12.056,
+            "waiting_time": 5.5135,
+            "travel_dist": 54.3785,
+            "efficiency": 2.2244,
+            "solved": 20
+          },
+          "ep20000_best": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 30.3454,
+            "time_cost": 11.707,
+            "waiting_time": 5.3714,
+            "travel_dist": 52.6796,
+            "efficiency": 2.2459,
+            "solved": 20
+          },
+          "ep30000_best": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 31.6002,
+            "time_cost": 11.9502,
+            "waiting_time": 4.8367,
+            "travel_dist": 60.8506,
+            "efficiency": 2.2115,
+            "solved": 20
+          },
+          "ep40000_best": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 31.4162,
+            "time_cost": 11.4502,
+            "waiting_time": 4.6256,
+            "travel_dist": 60.2585,
+            "efficiency": 2.1943,
+            "solved": 20
+          },
+          "ep50000_best": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 31.4354,
+            "time_cost": 12.4879,
+            "waiting_time": 4.4545,
+            "travel_dist": 63.5116,
+            "efficiency": 2.1821,
+            "solved": 20
+          },
+          "ep10000_ckpt": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 32.2477,
+            "time_cost": 12.413,
+            "waiting_time": 5.8412,
+            "travel_dist": 55.6544,
+            "efficiency": 2.2389,
+            "solved": 20
+          },
+          "ep20000_ckpt": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 31.5712,
+            "time_cost": 11.9175,
+            "waiting_time": 5.2003,
+            "travel_dist": 53.8748,
+            "efficiency": 2.2213,
+            "solved": 20
+          },
+          "ep30000_ckpt": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 31.6219,
+            "time_cost": 11.9009,
+            "waiting_time": 4.7068,
+            "travel_dist": 60.8851,
+            "efficiency": 2.2051,
+            "solved": 20
+          },
+          "ep40000_ckpt": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 31.4354,
+            "time_cost": 11.4781,
+            "waiting_time": 4.5005,
+            "travel_dist": 59.3432,
+            "efficiency": 2.1858,
+            "solved": 20
+          },
+          "ep50000_ckpt": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 30.725,
+            "time_cost": 12.1748,
+            "waiting_time": 4.079,
+            "travel_dist": 63.7555,
+            "efficiency": 2.2092,
+            "solved": 20
+          },
+          "final_ckpt": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 30.8803,
+            "time_cost": 12.2183,
+            "waiting_time": 3.9431,
+            "travel_dist": 64.06,
+            "efficiency": 2.1826,
+            "solved": 20
+          }
+        }
+      },
+      "overall": {
+        "greedy": {
+          "instances": 100,
+          "success_rate": 1.0,
+          "makespan": 32.582,
+          "time_cost": 12.5987,
+          "waiting_time": 4.6049,
+          "travel_dist": 63.2722,
+          "efficiency": 2.2541,
+          "solved": 100
+        },
+        "ep10000_best": {
+          "instances": 100,
+          "success_rate": 1.0,
+          "makespan": 26.7704,
+          "time_cost": 10.6334,
+          "waiting_time": 4.1565,
+          "travel_dist": 43.0636,
+          "efficiency": 2.2615,
+          "solved": 100
+        },
+        "ep20000_best": {
+          "instances": 100,
+          "success_rate": 1.0,
+          "makespan": 26.8692,
+          "time_cost": 10.4369,
+          "waiting_time": 4.0473,
+          "travel_dist": 42.6449,
+          "efficiency": 2.2501,
+          "solved": 100
+        },
+        "ep30000_best": {
+          "instances": 100,
+          "success_rate": 1.0,
+          "makespan": 26.9999,
+          "time_cost": 10.1979,
+          "waiting_time": 3.6642,
+          "travel_dist": 46.8206,
+          "efficiency": 2.2318,
+          "solved": 100
+        },
+        "ep40000_best": {
+          "instances": 100,
+          "success_rate": 1.0,
+          "makespan": 27.018,
+          "time_cost": 9.7555,
+          "waiting_time": 3.5909,
+          "travel_dist": 45.6415,
+          "efficiency": 2.227,
+          "solved": 100
+        },
+        "ep50000_best": {
+          "instances": 100,
+          "success_rate": 1.0,
+          "makespan": 26.5218,
+          "time_cost": 10.4851,
+          "waiting_time": 3.2861,
+          "travel_dist": 48.4229,
+          "efficiency": 2.1985,
+          "solved": 100
+        },
+        "ep10000_ckpt": {
+          "instances": 100,
+          "success_rate": 1.0,
+          "makespan": 27.1096,
+          "time_cost": 10.7121,
+          "waiting_time": 4.2757,
+          "travel_dist": 43.3406,
+          "efficiency": 2.2627,
+          "solved": 100
+        },
+        "ep20000_ckpt": {
+          "instances": 100,
+          "success_rate": 1.0,
+          "makespan": 27.0008,
+          "time_cost": 10.4089,
+          "waiting_time": 3.9251,
+          "travel_dist": 42.635,
+          "efficiency": 2.2442,
+          "solved": 100
+        },
+        "ep30000_ckpt": {
+          "instances": 100,
+          "success_rate": 1.0,
+          "makespan": 27.0504,
+          "time_cost": 10.2953,
+          "waiting_time": 3.677,
+          "travel_dist": 46.6283,
+          "efficiency": 2.2304,
+          "solved": 100
+        },
+        "ep40000_ckpt": {
+          "instances": 100,
+          "success_rate": 1.0,
+          "makespan": 27.1339,
+          "time_cost": 9.7948,
+          "waiting_time": 3.5327,
+          "travel_dist": 45.4436,
+          "efficiency": 2.232,
+          "solved": 100
+        },
+        "ep50000_ckpt": {
+          "instances": 100,
+          "success_rate": 1.0,
+          "makespan": 26.4587,
+          "time_cost": 10.4133,
+          "waiting_time": 3.2104,
+          "travel_dist": 48.6037,
+          "efficiency": 2.2026,
+          "solved": 100
+        },
+        "final_ckpt": {
+          "instances": 100,
+          "success_rate": 1.0,
+          "makespan": 26.5266,
+          "time_cost": 10.378,
+          "waiting_time": 3.1213,
+          "travel_dist": 48.7893,
+          "efficiency": 2.1935,
+          "solved": 100
+        }
+      }
+    },
+    "M5": {
+      "config": {
+        "agents": 50,
+        "per_species": 10,
+        "species": 5,
+        "tasks": 50,
+        "skills": 5,
+        "gamma": 1.0
+      },
+      "methods": [
+        "greedy",
+        "ep10000_best",
+        "ep20000_best",
+        "ep30000_best",
+        "ep40000_best",
+        "ep50000_best",
+        "ep10000_ckpt",
+        "ep20000_ckpt",
+        "ep30000_ckpt",
+        "ep40000_ckpt",
+        "ep50000_ckpt",
+        "final_ckpt"
+      ],
+      "per_distribution": {
+        "uniform": {
+          "greedy": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 20.8931,
+            "time_cost": 6.6939,
+            "waiting_time": 1.7016,
+            "travel_dist": 75.9628,
+            "efficiency": 2.2605,
+            "solved": 20
+          },
+          "ep10000_best": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 18.1608,
+            "time_cost": 5.5475,
+            "waiting_time": 1.6591,
+            "travel_dist": 63.9493,
+            "efficiency": 2.2556,
+            "solved": 20
+          },
+          "ep20000_best": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 18.7517,
+            "time_cost": 5.342,
+            "waiting_time": 1.5829,
+            "travel_dist": 63.5807,
+            "efficiency": 2.2353,
+            "solved": 20
+          },
+          "ep30000_best": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 19.5353,
+            "time_cost": 5.4282,
+            "waiting_time": 1.5617,
+            "travel_dist": 67.1546,
+            "efficiency": 2.2367,
+            "solved": 20
+          },
+          "ep40000_best": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 19.8263,
+            "time_cost": 5.1404,
+            "waiting_time": 1.6428,
+            "travel_dist": 66.3146,
+            "efficiency": 2.2587,
+            "solved": 20
+          },
+          "ep50000_best": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 19.5604,
+            "time_cost": 5.3628,
+            "waiting_time": 1.5165,
+            "travel_dist": 69.4991,
+            "efficiency": 2.2101,
+            "solved": 20
+          },
+          "ep10000_ckpt": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 18.922,
+            "time_cost": 5.6073,
+            "waiting_time": 1.7609,
+            "travel_dist": 64.8982,
+            "efficiency": 2.2558,
+            "solved": 20
+          },
+          "ep20000_ckpt": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 18.7066,
+            "time_cost": 5.4303,
+            "waiting_time": 1.6411,
+            "travel_dist": 63.3448,
+            "efficiency": 2.2257,
+            "solved": 20
+          },
+          "ep30000_ckpt": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 19.2229,
+            "time_cost": 5.5097,
+            "waiting_time": 1.6915,
+            "travel_dist": 67.4143,
+            "efficiency": 2.2468,
+            "solved": 20
+          },
+          "ep40000_ckpt": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 19.5786,
+            "time_cost": 5.1078,
+            "waiting_time": 1.5939,
+            "travel_dist": 66.5479,
+            "efficiency": 2.2452,
+            "solved": 20
+          },
+          "ep50000_ckpt": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 19.359,
+            "time_cost": 5.3726,
+            "waiting_time": 1.5087,
+            "travel_dist": 69.0439,
+            "efficiency": 2.2249,
+            "solved": 20
+          },
+          "final_ckpt": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 19.288,
+            "time_cost": 5.3865,
+            "waiting_time": 1.4861,
+            "travel_dist": 69.1559,
+            "efficiency": 2.2168,
+            "solved": 20
+          }
+        },
+        "gmm": {
+          "greedy": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 17.3912,
+            "time_cost": 5.301,
+            "waiting_time": 1.3363,
+            "travel_dist": 54.8425,
+            "efficiency": 2.2172,
+            "solved": 20
+          },
+          "ep10000_best": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 15.2037,
+            "time_cost": 4.9823,
+            "waiting_time": 1.4835,
+            "travel_dist": 49.2058,
+            "efficiency": 2.264,
+            "solved": 20
+          },
+          "ep20000_best": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 14.7874,
+            "time_cost": 4.8985,
+            "waiting_time": 1.4501,
+            "travel_dist": 48.4291,
+            "efficiency": 2.2259,
+            "solved": 20
+          },
+          "ep30000_best": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 15.0853,
+            "time_cost": 4.6225,
+            "waiting_time": 1.3735,
+            "travel_dist": 49.7434,
+            "efficiency": 2.2105,
+            "solved": 20
+          },
+          "ep40000_best": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 15.7495,
+            "time_cost": 4.35,
+            "waiting_time": 1.415,
+            "travel_dist": 49.6176,
+            "efficiency": 2.2253,
+            "solved": 20
+          },
+          "ep50000_best": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 15.3592,
+            "time_cost": 4.6468,
+            "waiting_time": 1.2849,
+            "travel_dist": 51.1309,
+            "efficiency": 2.1961,
+            "solved": 20
+          },
+          "ep10000_ckpt": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 15.1465,
+            "time_cost": 4.9715,
+            "waiting_time": 1.5296,
+            "travel_dist": 49.1897,
+            "efficiency": 2.2541,
+            "solved": 20
+          },
+          "ep20000_ckpt": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 14.9785,
+            "time_cost": 4.9067,
+            "waiting_time": 1.4585,
+            "travel_dist": 48.5377,
+            "efficiency": 2.2175,
+            "solved": 20
+          },
+          "ep30000_ckpt": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 15.2425,
+            "time_cost": 4.5575,
+            "waiting_time": 1.3698,
+            "travel_dist": 49.5494,
+            "efficiency": 2.2153,
+            "solved": 20
+          },
+          "ep40000_ckpt": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 15.8455,
+            "time_cost": 4.321,
+            "waiting_time": 1.343,
+            "travel_dist": 49.7486,
+            "efficiency": 2.2144,
+            "solved": 20
+          },
+          "ep50000_ckpt": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 15.2299,
+            "time_cost": 4.5562,
+            "waiting_time": 1.3129,
+            "travel_dist": 50.5334,
+            "efficiency": 2.1602,
+            "solved": 20
+          },
+          "final_ckpt": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 15.4196,
+            "time_cost": 4.6297,
+            "waiting_time": 1.2965,
+            "travel_dist": 51.0177,
+            "efficiency": 2.1838,
+            "solved": 20
+          }
+        },
+        "ring": {
+          "greedy": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 20.2138,
+            "time_cost": 6.6977,
+            "waiting_time": 1.7834,
+            "travel_dist": 70.8483,
+            "efficiency": 2.3004,
+            "solved": 20
+          },
+          "ep10000_best": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 16.9223,
+            "time_cost": 5.2813,
+            "waiting_time": 1.9385,
+            "travel_dist": 56.5495,
+            "efficiency": 2.289,
+            "solved": 20
+          },
+          "ep20000_best": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 17.0381,
+            "time_cost": 5.2314,
+            "waiting_time": 1.6964,
+            "travel_dist": 55.8493,
+            "efficiency": 2.332,
+            "solved": 20
+          },
+          "ep30000_best": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 17.1612,
+            "time_cost": 5.1429,
+            "waiting_time": 1.7436,
+            "travel_dist": 58.7278,
+            "efficiency": 2.2758,
+            "solved": 20
+          },
+          "ep40000_best": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 17.4076,
+            "time_cost": 4.7891,
+            "waiting_time": 1.7005,
+            "travel_dist": 58.6143,
+            "efficiency": 2.2935,
+            "solved": 20
+          },
+          "ep50000_best": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 17.3333,
+            "time_cost": 5.1752,
+            "waiting_time": 1.6157,
+            "travel_dist": 61.0516,
+            "efficiency": 2.2474,
+            "solved": 20
+          },
+          "ep10000_ckpt": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 16.8002,
+            "time_cost": 5.385,
+            "waiting_time": 1.8925,
+            "travel_dist": 56.6911,
+            "efficiency": 2.328,
+            "solved": 20
+          },
+          "ep20000_ckpt": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 16.9124,
+            "time_cost": 5.2167,
+            "waiting_time": 1.7814,
+            "travel_dist": 55.7914,
+            "efficiency": 2.3131,
+            "solved": 20
+          },
+          "ep30000_ckpt": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 17.4344,
+            "time_cost": 5.1764,
+            "waiting_time": 1.6952,
+            "travel_dist": 59.0569,
+            "efficiency": 2.297,
+            "solved": 20
+          },
+          "ep40000_ckpt": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 17.6306,
+            "time_cost": 4.8753,
+            "waiting_time": 1.6489,
+            "travel_dist": 59.0655,
+            "efficiency": 2.286,
+            "solved": 20
+          },
+          "ep50000_ckpt": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 17.2856,
+            "time_cost": 5.1771,
+            "waiting_time": 1.6705,
+            "travel_dist": 61.4444,
+            "efficiency": 2.2662,
+            "solved": 20
+          },
+          "final_ckpt": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 16.9846,
+            "time_cost": 5.0032,
+            "waiting_time": 1.5656,
+            "travel_dist": 60.9414,
+            "efficiency": 2.2388,
+            "solved": 20
+          }
+        },
+        "bipolar": {
+          "greedy": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 23.0508,
+            "time_cost": 7.9436,
+            "waiting_time": 2.4213,
+            "travel_dist": 86.7654,
+            "efficiency": 2.2373,
+            "solved": 20
+          },
+          "ep10000_best": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 20.0655,
+            "time_cost": 6.1074,
+            "waiting_time": 2.0179,
+            "travel_dist": 69.8368,
+            "efficiency": 2.2504,
+            "solved": 20
+          },
+          "ep20000_best": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 19.9406,
+            "time_cost": 5.8863,
+            "waiting_time": 1.9237,
+            "travel_dist": 70.6106,
+            "efficiency": 2.2401,
+            "solved": 20
+          },
+          "ep30000_best": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 20.6997,
+            "time_cost": 6.6428,
+            "waiting_time": 1.9259,
+            "travel_dist": 84.4498,
+            "efficiency": 2.2082,
+            "solved": 20
+          },
+          "ep40000_best": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 20.5779,
+            "time_cost": 6.619,
+            "waiting_time": 1.9487,
+            "travel_dist": 83.4419,
+            "efficiency": 2.1903,
+            "solved": 20
+          },
+          "ep50000_best": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 20.4833,
+            "time_cost": 7.2234,
+            "waiting_time": 1.7239,
+            "travel_dist": 93.4655,
+            "efficiency": 2.1629,
+            "solved": 20
+          },
+          "ep10000_ckpt": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 20.2745,
+            "time_cost": 6.1506,
+            "waiting_time": 2.0405,
+            "travel_dist": 70.3171,
+            "efficiency": 2.2511,
+            "solved": 20
+          },
+          "ep20000_ckpt": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 20.2408,
+            "time_cost": 6.0303,
+            "waiting_time": 1.9378,
+            "travel_dist": 70.2856,
+            "efficiency": 2.2384,
+            "solved": 20
+          },
+          "ep30000_ckpt": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 20.3708,
+            "time_cost": 6.4717,
+            "waiting_time": 1.8596,
+            "travel_dist": 83.3797,
+            "efficiency": 2.1963,
+            "solved": 20
+          },
+          "ep40000_ckpt": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 20.6488,
+            "time_cost": 6.5035,
+            "waiting_time": 1.8631,
+            "travel_dist": 83.3272,
+            "efficiency": 2.1825,
+            "solved": 20
+          },
+          "ep50000_ckpt": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 20.1775,
+            "time_cost": 7.1416,
+            "waiting_time": 1.7272,
+            "travel_dist": 92.3264,
+            "efficiency": 2.1441,
+            "solved": 20
+          },
+          "final_ckpt": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 20.2584,
+            "time_cost": 7.1787,
+            "waiting_time": 1.7653,
+            "travel_dist": 92.4923,
+            "efficiency": 2.1596,
+            "solved": 20
+          }
+        },
+        "edges": {
+          "greedy": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 25.7145,
+            "time_cost": 8.9554,
+            "waiting_time": 2.4794,
+            "travel_dist": 102.6254,
+            "efficiency": 2.1814,
+            "solved": 20
+          },
+          "ep10000_best": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 21.3589,
+            "time_cost": 6.6267,
+            "waiting_time": 2.4709,
+            "travel_dist": 76.7957,
+            "efficiency": 2.1675,
+            "solved": 20
+          },
+          "ep20000_best": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 21.0194,
+            "time_cost": 6.6649,
+            "waiting_time": 2.3885,
+            "travel_dist": 77.1264,
+            "efficiency": 2.173,
+            "solved": 20
+          },
+          "ep30000_best": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 22.1699,
+            "time_cost": 6.8069,
+            "waiting_time": 2.2846,
+            "travel_dist": 85.0262,
+            "efficiency": 2.151,
+            "solved": 20
+          },
+          "ep40000_best": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 22.1273,
+            "time_cost": 6.5493,
+            "waiting_time": 2.2479,
+            "travel_dist": 81.3257,
+            "efficiency": 2.1758,
+            "solved": 20
+          },
+          "ep50000_best": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 22.6195,
+            "time_cost": 7.0697,
+            "waiting_time": 2.1814,
+            "travel_dist": 90.0853,
+            "efficiency": 2.1221,
+            "solved": 20
+          },
+          "ep10000_ckpt": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 21.6241,
+            "time_cost": 6.6578,
+            "waiting_time": 2.547,
+            "travel_dist": 77.5714,
+            "efficiency": 2.176,
+            "solved": 20
+          },
+          "ep20000_ckpt": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 20.969,
+            "time_cost": 6.5404,
+            "waiting_time": 2.3184,
+            "travel_dist": 76.1883,
+            "efficiency": 2.1742,
+            "solved": 20
+          },
+          "ep30000_ckpt": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 22.4453,
+            "time_cost": 6.9117,
+            "waiting_time": 2.2398,
+            "travel_dist": 84.9226,
+            "efficiency": 2.1671,
+            "solved": 20
+          },
+          "ep40000_ckpt": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 22.4747,
+            "time_cost": 6.4943,
+            "waiting_time": 2.2874,
+            "travel_dist": 82.8618,
+            "efficiency": 2.1638,
+            "solved": 20
+          },
+          "ep50000_ckpt": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 22.6725,
+            "time_cost": 7.2492,
+            "waiting_time": 2.284,
+            "travel_dist": 90.9999,
+            "efficiency": 2.1547,
+            "solved": 20
+          },
+          "final_ckpt": {
+            "instances": 20,
+            "success_rate": 1.0,
+            "makespan": 22.3965,
+            "time_cost": 7.1757,
+            "waiting_time": 2.0992,
+            "travel_dist": 91.9696,
+            "efficiency": 2.1553,
+            "solved": 20
+          }
+        }
+      },
+      "overall": {
+        "greedy": {
+          "instances": 100,
+          "success_rate": 1.0,
+          "makespan": 21.4527,
+          "time_cost": 7.1183,
+          "waiting_time": 1.9444,
+          "travel_dist": 78.2089,
+          "efficiency": 2.2394,
+          "solved": 100
+        },
+        "ep10000_best": {
+          "instances": 100,
+          "success_rate": 1.0,
+          "makespan": 18.3422,
+          "time_cost": 5.709,
+          "waiting_time": 1.914,
+          "travel_dist": 63.2674,
+          "efficiency": 2.2453,
+          "solved": 100
+        },
+        "ep20000_best": {
+          "instances": 100,
+          "success_rate": 1.0,
+          "makespan": 18.3075,
+          "time_cost": 5.6046,
+          "waiting_time": 1.8083,
+          "travel_dist": 63.1192,
+          "efficiency": 2.2413,
+          "solved": 100
+        },
+        "ep30000_best": {
+          "instances": 100,
+          "success_rate": 1.0,
+          "makespan": 18.9303,
+          "time_cost": 5.7287,
+          "waiting_time": 1.7779,
+          "travel_dist": 69.0204,
+          "efficiency": 2.2164,
+          "solved": 100
+        },
+        "ep40000_best": {
+          "instances": 100,
+          "success_rate": 1.0,
+          "makespan": 19.1377,
+          "time_cost": 5.4896,
+          "waiting_time": 1.791,
+          "travel_dist": 67.8628,
+          "efficiency": 2.2287,
+          "solved": 100
+        },
+        "ep50000_best": {
+          "instances": 100,
+          "success_rate": 1.0,
+          "makespan": 19.0711,
+          "time_cost": 5.8956,
+          "waiting_time": 1.6645,
+          "travel_dist": 73.0465,
+          "efficiency": 2.1877,
+          "solved": 100
+        },
+        "ep10000_ckpt": {
+          "instances": 100,
+          "success_rate": 1.0,
+          "makespan": 18.5534,
+          "time_cost": 5.7544,
+          "waiting_time": 1.9541,
+          "travel_dist": 63.7335,
+          "efficiency": 2.253,
+          "solved": 100
+        },
+        "ep20000_ckpt": {
+          "instances": 100,
+          "success_rate": 1.0,
+          "makespan": 18.3615,
+          "time_cost": 5.6249,
+          "waiting_time": 1.8274,
+          "travel_dist": 62.8295,
+          "efficiency": 2.2338,
+          "solved": 100
+        },
+        "ep30000_ckpt": {
+          "instances": 100,
+          "success_rate": 1.0,
+          "makespan": 18.9432,
+          "time_cost": 5.7254,
+          "waiting_time": 1.7712,
+          "travel_dist": 68.8646,
+          "efficiency": 2.2245,
+          "solved": 100
+        },
+        "ep40000_ckpt": {
+          "instances": 100,
+          "success_rate": 1.0,
+          "makespan": 19.2356,
+          "time_cost": 5.4604,
+          "waiting_time": 1.7473,
+          "travel_dist": 68.3102,
+          "efficiency": 2.2184,
+          "solved": 100
+        },
+        "ep50000_ckpt": {
+          "instances": 100,
+          "success_rate": 1.0,
+          "makespan": 18.9449,
+          "time_cost": 5.8993,
+          "waiting_time": 1.7006,
+          "travel_dist": 72.8696,
+          "efficiency": 2.19,
+          "solved": 100
+        },
+        "final_ckpt": {
+          "instances": 100,
+          "success_rate": 1.0,
+          "makespan": 18.8694,
+          "time_cost": 5.8748,
+          "waiting_time": 1.6425,
+          "travel_dist": 73.1154,
+          "efficiency": 2.1909,
+          "solved": 100
+        }
+      }
+    }
+  }
+}
